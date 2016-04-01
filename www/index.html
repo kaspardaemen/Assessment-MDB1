@@ -20,43 +20,54 @@
     under the License.
 -->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />    
-        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div data-role="page">
-            <div data-role="header" data-position="fixed">
-                <h1>Kroegen in de buurt</h1>
-            </div>
-            <div data-role="content">
-                <form class="ui-filterable">
-                    <input id="rich-autocomplete-input" data-type="search" placeholder="Zoeken naar kroegen bij jou in de buurt...">
-                </form>
-                <ul data-role="listview" data-filter="true" data-inset="true" data-input="#rich-autocomplete-input">
-                    <li data-filtertext="NASDAQ:ADBE Adobe Systems Incorporated"><a href="#">Adobe</a></li>
-                    <li data-filtertext="NASDAQ:AMZNL Amazon.com, Inc."><a href="#">Amazon</a></li>
-                    <li data-filtertext="NASDAQ:AAPL Apple Inc."><a href="#">Apple</a></li>
-                    <li data-filtertext="NASDAQ:GOOG Google Inc."><a href="#">Google</a></li>
-                    <li data-filtertext="NYSE:IBM Intl. International Business Machines Corp."><a href="#">IBM</a></li>
-                    <li data-filtertext="NASDAQ:MSFT Microsoft Corporation"><a href="#">Microsoft</a></li>
-                    <li data-filtertext="NASDAQ:YHOO Yahoo! Inc."><a href="#">Yahoo</a></li>
-                    <li data-filtertext="USA U.S.A. United States of America"><a href="#">United States</a></li>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />    
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <title>Hello World</title>
+</head>
+<body>
+    <div data-role="page" id="home">
+        <div data-theme="a" data-role="header">
+            <h3>
+                Kroegen in de buurt
+            </h3>
+        </div>        
+        <div data-role="content">
+            <div class="example-wrapper" data-iscroll>
+                <ul data-role="listview"  id="kroeg-list" data-theme="a">
+
                 </ul>
             </div>
         </div>
-         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script src="js/jquery.mobile-1.4.5.min.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+                    
+    </div>
+    <div data-role="page" id="headline">
+        <div data-theme="a" data-role="header">
+            <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a>                        
+            <h3>
+                Kroeg info
+            </h3>
+        </div>        
+        <div data-role="content">
+            <ul data-role="listview"  id="movie-data" data-theme="a">
+
+            </ul>
+        </div>
+    </div>    
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/Places.js"></script> 
+    <script type="text/javascript">
+    app.initialize();
+    </script>
+</body>
 </html>
