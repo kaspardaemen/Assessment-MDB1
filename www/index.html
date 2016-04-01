@@ -39,8 +39,11 @@
             </h3>
         </div>        
         <div data-role="content">
-            <div class="example-wrapper" data-iscroll>
-                <ul data-role="listview"  id="kroeg-list" data-theme="a">
+            <form class="ui-filterable">
+                <input id="rich-autocomplete-input" data-type="search" placeholder="Zoeken...">
+            </form>
+            <div class="example-wrapper" data-iscroll> 
+                <ul data-role="listview"  id="kroeg-list" data-filter="true" data-inset="true" data-theme="a" data-input="#rich-autocomplete-input" > 
 
                 </ul>
             </div>
@@ -55,7 +58,7 @@
             </h3>
         </div>        
         <div data-role="content">
-            <ul data-role="listview"  id="movie-data" data-theme="a">
+            <ul data-role="listview"  id="kroeg-data" data-theme="a">
 
             </ul>
         </div>
