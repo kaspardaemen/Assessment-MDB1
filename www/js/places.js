@@ -7,7 +7,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
     $(document).on('vclick', '#kroeg-list li a', function(){  
 
         kroegInfo.id = $(this).attr('data-id');
-        $.mobile.changePage( "#headline", { transition: "slide", changeHash: false });
+        $.mobile.changePage( "#headline-kroeg", { transition: "slide", changeHash: false });
     });
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
     $(document).on('pageinit', '#indebuurt', function(){      
@@ -43,7 +43,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
         });         
     });
 
-    $(document).on('pagebeforeshow', '#headline', function(){   
+    $(document).on('pagebeforeshow', '#headline-kroeg', function(){   
        
         $('#kroeg-data').empty();
         $.each(kroegInfo.result, function(i, row) {
