@@ -31,25 +31,25 @@
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <title>Hello World</title>
+    <title>Kroeg race</title>
 </head>
 <body>
     <div data-role="page" id="home">
 
-    <div data-role="header">
-        <h1>Kroen race</h1>
-    </div><!-- /header -->
+        <div data-role="header">
+            <h1>Kroeg race</h1>
+        </div><!-- /header -->
 
-    <div data-role="content" >  
-       
-        <p><a href="#indebuurt" data-role="button">Lijst van kroegen in de buurt</a></p> 
-        <p><a href="#indebuurtmap" data-role="button">Laat kaart zien</a></p>     
-        
-    </div><!-- /content -->
-    
-    <div data-role="footer" data-theme="d">
-        <h4>Page Footer</h4>
-    </div><!-- /footer -->
+        <div data-role="content" >  
+
+            <p><a href="#indebuurt" data-role="button">Lijst van kroegen in de buurt</a></p> 
+            <p><a href="#map-page" data-role="button">Laat kaart zien</a></p>     
+
+        </div><!-- /content -->
+
+        <div data-role="footer" data-theme="d">
+            <h4>Page Footer</h4>
+        </div><!-- /footer -->
     </div><!-- /page one -->
     <div data-role="page" id="indebuurt">
         <div data-theme="a" data-role="header">
@@ -69,7 +69,7 @@
                 </ul>
             </div>
         </div>
-                    
+
     </div>
     <div data-role="page" id="headline">
         <div data-theme="a" data-role="header">
@@ -84,18 +84,29 @@
             </ul>
         </div>
     </div>  
+    <div data-role="page" id="map-page" data-url="map-page">
+        <div data-role="header" data-theme="a">
+            <h1>Maps</h1>
+        </div>
+        <div role="main" class="ui-content" id="map-canvas">
+            <!-- map loads here... -->
+        </div>
+    </div>   
 
-  
+
+
 </body>  
 
-  
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="js/jquery.mobile-1.4.5.min.js"></script>
-    <script src="js/Places.js"></script> 
-    <script type="text/javascript">
-    app.initialize();
-    </script>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/Places.js"></script> 
+<script src="js/maps.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+app.initialize();
+</script>
 </body>
 </html>
