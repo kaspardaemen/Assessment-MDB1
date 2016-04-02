@@ -3,6 +3,12 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
  function onDeviceReady() {
+
+    $(document).on('vclick', '#kroeg-list li a', function(){  
+
+        kroegInfo.id = $(this).attr('data-id');
+        $.mobile.changePage( "#headline", { transition: "slide", changeHash: false });
+    });
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
     $(document).on('pageinit', '#indebuurt', function(){      
     var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?',
@@ -11,7 +17,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
     type= '&type=cafe',        
     key = 'key=AIzaSyDZHWVrdN6pma0WKoAVhV2zEwHywXETnh0';        
         
-        
+
         $.ajax({
             url: url + key + location + radius + type ,
             dataType: "json",
@@ -62,11 +68,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
     
 
-
- function onDeviceReady() {
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    }
-
     // onSuccess Geolocation
     //
     function onSuccess(position) {
@@ -93,11 +94,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
         
 }
 
-$(document).on('vclick', '#kroeg-list li a', function(){  
 
-        kroegInfo.id = $(this).attr('data-id');
-        $.mobile.changePage( "#headline", { transition: "slide", changeHash: false });
-    });
 
     var imgUrl = {
         url : 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=',

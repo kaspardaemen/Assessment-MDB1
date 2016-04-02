@@ -28,9 +28,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	        var marker = new google.maps.Marker({
 	            position: latlng,
 	            map: map,
-	            title: "Greetings!"
+	            title: "Hier ben ik!"
 	        });
 	    }
 	});
- 	
+
  }

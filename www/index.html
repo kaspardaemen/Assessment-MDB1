@@ -43,7 +43,8 @@
         <div data-role="content" >  
 
             <p><a href="#indebuurt" data-role="button">Lijst van kroegen in de buurt</a></p> 
-            <p><a href="#map-page" data-role="button">Laat kaart zien</a></p>     
+            <p><a href="#map-page" data-role="button">Laat kaart zien</a></p>
+            <p><a href="#races" data-role="button">Mijn races</a></p>      
 
         </div><!-- /content -->
 
@@ -69,6 +70,29 @@
                 </ul>
             </div>
         </div>
+
+
+    </div>
+    <div data-role="page" id="races">
+        <div data-theme="a" data-role="header">
+            <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>  
+            <h3>
+                Races
+            </h3>
+        </div>        
+        <div data-role="content">
+            
+            <form class="ui-filterable">
+                <input id="rich-autocomplete-input" data-type="search" placeholder="Zoeken...">
+            </form>
+            <div class="example-wrapper" data-iscroll> 
+                <ul data-role="listview"  id="race-list" data-filter="true" data-inset="true" data-theme="a" data-input="#rich-autocomplete-input" > 
+
+                </ul>
+            </div>
+        </div>
+    </div>   
+        
 
     </div>
     <div data-role="page" id="headline">
@@ -104,6 +128,8 @@
 <script src="js/jquery.mobile-1.4.5.min.js"></script>
 <script src="js/Places.js"></script> 
 <script src="js/maps.js"></script>
+<script src="js/RESTapi.js"></script>
+
 <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
 app.initialize();
