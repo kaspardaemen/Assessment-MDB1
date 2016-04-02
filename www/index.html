@@ -35,12 +35,31 @@
 </head>
 <body>
     <div data-role="page" id="home">
+
+    <div data-role="header">
+        <h1>Kroen race</h1>
+    </div><!-- /header -->
+
+    <div data-role="content" >  
+       
+        <p><a href="#indebuurt" data-role="button">Lijst van kroegen in de buurt</a></p> 
+        <p><a href="#indebuurtmap" data-role="button">Laat kaart zien</a></p>     
+        
+    </div><!-- /content -->
+    
+    <div data-role="footer" data-theme="d">
+        <h4>Page Footer</h4>
+    </div><!-- /footer -->
+    </div><!-- /page one -->
+    <div data-role="page" id="indebuurt">
         <div data-theme="a" data-role="header">
+            <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>  
             <h3>
                 Kroegen in de buurt
             </h3>
         </div>        
         <div data-role="content">
+
             <form class="ui-filterable">
                 <input id="rich-autocomplete-input" data-type="search" placeholder="Zoeken...">
             </form>
@@ -54,7 +73,7 @@
     </div>
     <div data-role="page" id="headline">
         <div data-theme="a" data-role="header">
-            <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a>                        
+            <a href="#indebuurt" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>                        
             <h3>
                 Kroeg info
             </h3>
@@ -64,11 +83,15 @@
 
             </ul>
         </div>
-    </div>    
+    </div>  
 
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  
+</body>  
+
+  
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="js/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/Places.js"></script> 
     <script type="text/javascript">
