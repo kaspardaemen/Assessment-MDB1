@@ -3,14 +3,15 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
  function onDeviceReady() {
-
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
     $(document).on('pageinit', '#indebuurt', function(){      
     var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?',
     radius = '&radius=5000',
     location = '&location=51.788394,%205.848014', 
     type= '&type=cafe',        
     key = 'key=AIzaSyDZHWVrdN6pma0WKoAVhV2zEwHywXETnh0';        
-    
+        
+        
         $.ajax({
             url: url + key + location + radius + type ,
             dataType: "json",
@@ -59,7 +60,40 @@ document.addEventListener("deviceready", onDeviceReady, false);
         });    
     });
 
-    $(document).on('vclick', '#kroeg-list li a', function(){  
+    
+
+
+ function onDeviceReady() {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+
+    // onSuccess Geolocation
+    //
+    function onSuccess(position) {
+        var element = document.getElementById('geolocation');
+        element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
+                            'Longitude: '          + position.coords.longitude             + '<br />' +
+                            'Altitude: '           + position.coords.altitude              + '<br />' +
+                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                            'Heading: '            + position.coords.heading               + '<br />' +
+                            'Speed: '              + position.coords.speed                 + '<br />' +
+                            'Timestamp: '          + position.timestamp                    + '<br />';
+    }
+
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+
+
+
+        
+}
+
+$(document).on('vclick', '#kroeg-list li a', function(){  
 
         kroegInfo.id = $(this).attr('data-id');
         $.mobile.changePage( "#headline", { transition: "slide", changeHash: false });
@@ -74,8 +108,3 @@ document.addEventListener("deviceready", onDeviceReady, false);
         id : null,
         result : null
     } 
-
-
-        
-}
-
