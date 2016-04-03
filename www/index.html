@@ -34,13 +34,14 @@
     <title>Kroeg race</title>
 </head>
 <body>
-    <div data-role="page" id="home">
+    <!-- home -->
+    <div data-role="page" id="home" data-theme="b">
 
         <div data-role="header">
             <h1>Kroeg race</h1>
         </div><!-- /header -->
 
-        <div data-role="content" >  
+        <div data-role="content"  >  
 
             <p><a href="#indebuurt" data-role="button">Lijst van kroegen in de buurt</a></p> 
             <p><a href="#map-page" data-role="button">Laat kaart zien</a></p>
@@ -48,11 +49,13 @@
 
         </div><!-- /content -->
 
-        <div data-role="footer" data-theme="d">
+        <div data-role="footer" >
             <h4>Page Footer</h4>
         </div><!-- /footer -->
-    </div><!-- /page one -->
-    <div data-role="page" id="indebuurt">
+    </div>
+
+    <!-- overzicht kroegen in de buurt -->
+    <div data-role="page" id="indebuurt" data-theme="b">
         <div data-theme="a" data-role="header">
             <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>  
             <h3>
@@ -62,7 +65,7 @@
         <div data-role="content">
              <p id="geolocation">Finding geolocation...</p>
             <form class="ui-filterable">
-                <input id="rich-autocomplete-input" data-type="search" placeholder="Zoeken...">
+                <input  data-type="search" placeholder="Zoeken...">
             </form>
             <div class="example-wrapper" data-iscroll> 
                 <ul data-role="listview"  id="kroeg-list" data-filter="true" data-inset="true" data-theme="a" data-input="#rich-autocomplete-input" > 
@@ -70,10 +73,10 @@
                 </ul>
             </div>
         </div>
+     </div>   
 
-
-    </div>
-    <div data-role="page" id="races">
+     <!-- race overzicht -->
+    <div data-role="page" id="races" data-theme="b">
         <div data-theme="a" data-role="header">
             <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>  
             <h3>
@@ -82,20 +85,21 @@
         </div>        
         <div data-role="content">
             
-            <form class="ui-filterable">
+            <form class="ui-filterable" id="filter">
                 <input id="rich-autocomplete-input" data-type="search" placeholder="Zoeken...">
             </form>
             <div class="example-wrapper" data-iscroll> 
                 <ul data-role="listview"  id="race-list" data-filter="true" data-inset="true" data-theme="a" data-input="#rich-autocomplete-input" > 
 
                 </ul>
+                <a href="#add-race" data-role="button" data-transition="slide" data-direction="forward">Nieuwe toevoegen</a>
             </div>
         </div>
     </div>   
         
 
-    </div>
-    <div data-role="page" id="headline-kroeg">
+    <!-- kroeg details -->
+    <div data-role="page" id="headline-kroeg" data-theme="e">
         <div data-theme="a" data-role="header">
             <a href="#indebuurt" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>                        
             <h3>
@@ -109,10 +113,10 @@
         </div>
     </div>  
 
-    </div>
-    <div data-role="page" id="headline-race">
+    <!-- race details -->
+    <div data-role="page" id="headline-race" data-theme="e">
         <div data-theme="a" data-role="header">
-            <a href="#indebuurt" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>                        
+            <a href="#races" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>                        
             <h3>
                 Race info
             </h3>
@@ -122,9 +126,38 @@
 
             </ul>
         </div>
-    </div>  
+    </div> 
 
-    <div data-role="page" id="map-page" data-url="map-page">
+    <!-- race toevoegen -->
+    <div data-role="page" id="add-race" data-theme="b"> 
+        <div data-theme="a" data-role="header">
+            <a href="#races" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>                        
+            <h3>
+                Niewe race toevoegen
+            </h3>
+        </div>
+        <div data-role="content">
+            <form action="" method="get" data-ajax="false" class="ui-body ui-body-a ui-corner-all">
+                <fieldset>
+                     <div data-role="fieldcontain">
+                        <label for="name">Naam: </label>
+                        <input type="text" name="name" />
+                     </div>
+                     
+                    <div data-role="fieldcontain">
+                        <label for="waypoint" class="select">Eerste kroeg: </label>
+                        <select name="waypoint" id="waypoint-select">
+                           
+                            
+                        </select>
+                    </div>
+                    <button  data-theme="b" name="submit" id="addRace" value="submit-value">Voeg toe</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div data-role="page" id="map-page" data-url="map-page" data-theme="e">
         <div data-role="header" data-theme="a">
             <h1>Maps</h1>
         </div>

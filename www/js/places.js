@@ -4,13 +4,16 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
  function onDeviceReady() {
 
+    //krijg de details van een café
     $(document).on('vclick', '#kroeg-list li a', function(){  
 
         kroegInfo.id = $(this).attr('data-id');
         $.mobile.changePage( "#headline-kroeg", { transition: "slide", changeHash: false });
     });
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    $(document).on('pageinit', '#indebuurt', function(){      
+   
+    //krijg een lijst van cafés uit de buurt
+   $(document).on('pageinit', '#indebuurt', function(){      
     var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?',
     radius = '&radius=5000',
     location = '&location=51.788394,%205.848014', 
