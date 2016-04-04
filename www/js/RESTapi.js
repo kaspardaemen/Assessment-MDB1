@@ -1,7 +1,11 @@
 
+ 	  
+  
 document.addEventListener("deviceready", onDeviceReady, false);
 
  function onDeviceReady() {
+
+
 
  	 //event: op een race geklinkt. ID van het aangeklikte id vastleggen
 	    $(document).on('vclick', '#race-list li a', function(){  
@@ -12,12 +16,66 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	    });
 
 	 //krijg een lijst van alle races
+ 	 $(document).on('pageinit', '#races', function(){ 
+ 	 	console.log("ik kom hier hierr");
+ 	 	var storage = window.localStorage;   
+ 	 	if(!storage.getItem('time-race-set') === null){
+ 	 		console.log("een time-race-set niet gevonden!");
+ 	 		var diff = event.timeStamp - storage.getItem('time-race-set');
+ 	 		
+ 	 	} else if(diff < 60000){
+ 	 			console.log("Niet langer dan 1 minuut geleden!");
+ 	 			raceInfo.result = storage.getItem('races');
+ 	 			$.each(raceInfo.result, function(i, row) {
+                 	$('#race-list').append('<li><a href="" data-id="' + row._id + '"><h3>' + row.name + '</h3><p>Begint om: ' + row.started_at + '</i></p></a></li>');  
+          		});
+                 $('#race-list').append('<p>uit de local gevist!!</p>')
+       			$('#race-list').listview('refresh');  
+ 	 	} else{
+ 	 	  	console.log('toch maar met ajax');
+	   		var url = 'https://rocky-meadow-19237.herokuapp.com/', 
+	    	mode = 'api/races';       
+	        
+	        $.ajax({
+	            url: url + mode,
+	            beforeSend : function() {$.mobile.loading('show')},
+			    complete   : function() {$.mobile.loading('hide')}, 
+	            dataType: "json",
+	            async: true,
+	            success: function (result) {
+	            	
+	            	//store in temp raceInfo
+	               	raceInfo.result = result;
+	               	//store local
+	               	storage.setItem('races', result);
+	               	storage.setItem('time-race-set', event.timeStamp)
+	               	// generate list in dom
+	                $.each(raceInfo.result, function(i, row) {
+                  
+                
+              			$('#race-list').append('<li><a href="" data-id="' + row._id + '"><h3>' + row.name + '</h3><p>Begint om: ' + row.started_at + '</i></p></a></li>');  
+          			});
+
+                 
+       				$('#race-list').listview('refresh');              
+	               
+	           },
+	           error: function (request,error) {
+	                console.log('Network error has occurred please try again!');  
+	            }
+	        });
+        }         
+    });
+
+ 	/* //krijg een lijst van alle users
  	 $(document).on('pageinit', '#races', function(){      
    		var url = 'https://rocky-meadow-19237.herokuapp.com/',
     	mode = 'api/races';       
         
         $.ajax({
             url: url + mode,
+            beforeSend : function() {$.mobile.loading('show')},
+		    complete   : function() {$.mobile.loading('hide')}, 
             dataType: "json",
             async: true,
             success: function (result) {
@@ -35,7 +93,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
                 console.log('Network error has occurred please try again!');
             }
         });         
-    });
+    });*/
 
  	 $(document).on('pageinit', '#add-race', function(){      
    		var url = 'https://rocky-meadow-19237.herokuapp.com/',
@@ -95,14 +153,15 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	$(document).on('vclick', '#addRace', function(){  
 		
 		var url = 'https://rocky-meadow-19237.herokuapp.com/',
-    	mode = 'api/races';     
+    	mode = 'api/races',
+    	name = $('#add-race-name').val();    
         $.ajax({
 		    type       : "POST",
 		    url        :  url+mode,
 		    
 		    beforeSend : function() {$.mobile.loading('show')},
 		    complete   : function() {$.mobile.loading('hide')},
-		    data       : { name : 'Zuipen tot we kruipen', waypoints: [ {
+		    data       : { name : $('#add-race-name').val(), waypoints: [ {
                 _id: "57003d4219464d540d7c3ca5",
                 longitude: "50000",
                 latitude: "50000",
@@ -119,10 +178,14 @@ document.addEventListener("deviceready", onDeviceReady, false);
 		    } 
 		}); 
     });
- 	  
+
+   
 
 
  }
+
+
+
 
   var raceInfo = {
         id : null, 

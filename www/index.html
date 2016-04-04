@@ -82,7 +82,7 @@
      <!-- overzicht races -->
    
    <!-- overzicht races -->
-   <div data-role="page" id="races" data-theme="b" >
+   <div data-role="page" id="races" data-theme="b"  >
         <div data-theme="b" data-role="header" data-add-back-btn="true">
             <a href="index.html" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>
    
@@ -136,7 +136,7 @@
     </div> 
 
     <!-- race toevoegen -->
-    <div data-role="page" id="add-race" data-theme="b"> 
+    <div data-role="page" id="add-race" data-theme="b" > 
         <div data-theme="b" data-role="header">
             <a href="#races" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>                       
             <h3>
@@ -147,13 +147,13 @@
             <form action="" method="get" data-ajax="false" class="ui-body ui-body-a ui-corner-all">
                 <fieldset>
                      <div data-role="fieldcontain">
-                        <label for="name">Naam: </label>
+                        <label id="add-race-name" for="name">Naam: </label>
                         <input type="text" name="name" />
                      </div>
                      
                     <div data-role="fieldcontain">
                         <label for="waypoint" class="select">Eerste kroeg: </label>
-                        <select data-theme="b" name="waypoint" id="waypoint-select">
+                        <select data-theme="b" name="waypoint" id="add-race-waypoint-select">
                            
                             
                         </select>
@@ -165,7 +165,7 @@
     </div>
 
     <!-- maps -->
-    <div data-role="page" id="map-page" data-url="map-page" data-theme="e">
+    <div data-role="page" id="map-page" data-url="map-page" data-theme="e" data-dom-cache="true">
         <div data-role="header" data-theme="a">
             <h1>Maps</h1>
         </div>
