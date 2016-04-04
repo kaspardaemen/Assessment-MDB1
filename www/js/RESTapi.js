@@ -94,35 +94,40 @@ document.addEventListener("deviceready", onDeviceReady, false);
             }
         });         
     });*/
-
+	
+	//lijst met waypoints ophalen voor race toevoegen
  	 $(document).on('pageinit', '#add-race', function(){      
-   		var url = 'https://rocky-meadow-19237.herokuapp.com/',
-    	mode = 'api/races';       
+   		 var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?',
+    	radius = '&radius=5000',
+    	location = '&location=51.788394,%205.848014', 
+    	type= '&type=cafe',        
+   		key = 'key=AIzaSyDZHWVrdN6pma0WKoAVhV2zEwHywXETnh0';  
         
         $.ajax({
-            url: url + mode,
+            url: url + key + location + radius + type ,
+             beforeSend : function() {$.mobile.loading('show')},
+			  complete   : function() {$.mobile.loading('hide')}, 
             dataType: "json",
             async: true,
             success: function (result) {
-               raceInfo.result = result;
+               kroegInfo.result = result.results;
               
-               $.each(raceInfo.result, function(i, row) {
-                     $.each(row.waypoints, function(j, waypoint) {
-                     	$('#waypoint-select').append('<option  data-id="' + waypoint._id + '">'+waypoint.name+'</option>');   
-                     });
-                
+               $.each(result.results, function(i, row) { 
+                    //console.log(JSON.stringify(row)); 
+                  
                     
+                    $('#add-race-waypoint-select').append('<option value='+ row.id +'>' + row.name + '</option>');  
                 });
-                 
-                $('#waypoint-select').selectmenu('refresh');
+                $('#add-race-waypoint-select').selectmenu('refresh');   
            },
            error: function (request,error) {
                 console.log('Network error has occurred please try again!');
             }
         });         
-    });
+    });        
+   
 	
-	//de deail gegevens van één race toevoegen
+	//de deail gegevens van één race genereren
 	$(document).on('pagebeforeshow', '#headline-race', function(){   
 	      
 	        $('#race-data').empty();
@@ -151,30 +156,38 @@ document.addEventListener("deviceready", onDeviceReady, false);
     });
 	
 	$(document).on('vclick', '#addRace', function(){  
-		
+		var kroegen;
+		 $.each(kroegInfo.result, function(i, row) {
+		 	
+		 	if($("#add-race-waypoint-select").val() == row.id){
+		 		kroegen = {longitude : row.geometry.location.lng, latitude: row.geometry.location.lat , name: row.name, _id: row.id };
+		 		
+		 	}
+		 });
+
 		var url = 'https://rocky-meadow-19237.herokuapp.com/',
     	mode = 'api/races',
-    	name = $('#add-race-name').val();    
+    	name = $('#add-race-name').val();  
+    	console.log('gaan we sturen:'+ JSON.stringify( {name: name, waypoints: kroegen}));
+    	var data = {
+    		name: name,
+    		waypoints: kroegen
+    	}
         $.ajax({
 		    type       : "POST",
 		    url        :  url+mode,
 		    
 		    beforeSend : function() {$.mobile.loading('show')},
 		    complete   : function() {$.mobile.loading('hide')},
-		    data       : { name : $('#add-race-name').val(), waypoints: [ {
-                _id: "57003d4219464d540d7c3ca5",
-                longitude: "50000",
-                latitude: "50000",
-                name: "'t Paultje"
-            }] },   
+		    data       : data,
 		    dataType   : 'json',
 		    success    : function(response) { 
 		        //console.error(JSON.stringify(response));
-		        alert('Works!');
+		       console.log('response van Tobias: '+ response); 
 		    },
-		    error      : function() {
+		    error      : function(response) {
 		        //console.error("error");
-		        alert('Not working!');                  
+		        console.log('response van Tobias:' + response);                 
 		    } 
 		}); 
     });
@@ -191,3 +204,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
         id : null, 
         result : null
     } 
+
+  var kroegInfo = {
+  	id : null,
+  	result: null
+  }  
