@@ -168,26 +168,34 @@ document.addEventListener("deviceready", onDeviceReady, false);
 		var url = 'https://rocky-meadow-19237.herokuapp.com/',
     	mode = 'api/races',
     	name = $('#add-race-name').val();  
-    	console.log('gaan we sturen:'+ JSON.stringify( {name: name, waypoints: kroegen}));
+    	
     	var data = {
     		name: name,
     		waypoints: kroegen
     	}
+    	console.log('gaan we sturen:'+ JSON.stringify( data)); 
+
+
+        
         $.ajax({
-		    type       : "POST",
-		    url        :  url+mode,
+		    
+		    url        :  "http://rocky-meadow-19237.herokuapp.com/api/races", 
+		    type       :  "POST",  
+		    
 		    
 		    beforeSend : function() {$.mobile.loading('show')},
 		    complete   : function() {$.mobile.loading('hide')},
 		    data       : data,
+		    crossDomain: true,
 		    dataType   : 'json',
+		    jsonp: false,
 		    success    : function(response) { 
 		        //console.error(JSON.stringify(response));
-		       console.log('response van Tobias: '+ response); 
+		       console.log('success'); 
 		    },
 		    error      : function(response) {
 		        //console.error("error");
-		        console.log('response van Tobias:' + response);                 
+		        console.log('response van Tobias:' + JSON.stringify(response));                 
 		    } 
 		}); 
     });
