@@ -28,8 +28,9 @@
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />  
     
-    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    
     <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <title>Kroeg race</title>
 </head>
@@ -43,19 +44,19 @@
 
         <div data-role="content"  >  
 
-            <p><a href="#indebuurt" data-role="button">Lijst van kroegen in de buurt</a></p> 
-            <p><a href="#map-page" data-role="button">Laat kaart zien</a></p>
-            <p><a href="#races" data-role="button">Mijn races</a></p>      
+            <p><a href="#indebuurt" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location"  data-role="button">Kroegen in de buurt</a></p> 
+            <p><a href="#races" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-bars" data-role="button">Race overzicht</a></p>   
+            <p><a href="#users" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Gebruiker overzicht</a></p>    
 
         </div><!-- /content -->
 
         <div data-role="footer" >
-            <h4>Page Footer</h4>
+            <h5>All Rights Reserved.</h5>
         </div><!-- /footer -->
     </div>
 
     <!-- overzicht kroegen in de buurt -->
-    <div data-role="page" id="indebuurt" data-theme="b">
+    <div data-role="page" id="indebuurt" data-theme="b" >
         <div data-theme="a" data-role="header">
             <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>  
             <h3>
@@ -75,31 +76,35 @@
         </div>
      </div>   
 
+
      <!-- race overzicht -->
-    <div data-role="page" id="races" data-theme="b">
-        <div data-theme="a" data-role="header">
-            <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>  
-            <h3>
-                Races
-            </h3>
+    
+     <!-- overzicht races -->
+   
+   <!-- overzicht races -->
+   <div data-role="page" id="races" data-theme="b" >
+        <div data-theme="b" data-role="header" data-add-back-btn="true">
+            <a href="index.html" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>
+   
+            <h3 class="ui-title" tabindex="0" role="heading" aria-level="1">Races</h3> 
         </div>        
         <div data-role="content">
             
-            <form class="ui-filterable" id="filter">
+            <form class="ui-filterable">
                 <input id="rich-autocomplete-input" data-type="search" placeholder="Zoeken...">
             </form>
             <div class="example-wrapper" data-iscroll> 
                 <ul data-role="listview"  id="race-list" data-filter="true" data-inset="true" data-theme="a" data-input="#rich-autocomplete-input" > 
 
                 </ul>
-                <a href="#add-race" data-role="button" data-transition="slide" data-direction="forward">Nieuwe toevoegen</a>
+                <a class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus" href="#add-race" data-role="button" data-transition="slide" data-direction="forward">Nieuwe toevoegen</a>
             </div>
         </div>
     </div>   
         
 
     <!-- kroeg details -->
-    <div data-role="page" id="headline-kroeg" data-theme="e">
+    <div data-role="page" id="headline-kroeg"  data-theme="b">
         <div data-theme="a" data-role="header">
             <a href="#indebuurt" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>                        
             <h3>
@@ -114,24 +119,26 @@
     </div>  
 
     <!-- race details -->
-    <div data-role="page" id="headline-race" data-theme="e">
-        <div data-theme="a" data-role="header">
-            <a href="#races" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>                        
+    <div data-role="page" id="headline-race" data-add-back-btn="true" data-theme="b">
+        <div  data-role="header">
+             <a href="#races" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>               
             <h3>
                 Race info
             </h3>
         </div>        
-        <div data-role="content">
+        <div data-theme="b" data-role="content">
             <ul data-role="listview"  id="race-data" data-theme="a">
 
             </ul>
+            <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete"  data-theme="b" name="submit" id="deleteRace" value="submit-value">Verwijderen</button>
+            <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit"  data-theme="b" name="submit" id="updateRace" value="submit-value">Aanpassen</button>
         </div>
     </div> 
 
     <!-- race toevoegen -->
     <div data-role="page" id="add-race" data-theme="b"> 
-        <div data-theme="a" data-role="header">
-            <a href="#races" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>                        
+        <div data-theme="b" data-role="header">
+            <a href="#races" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>                       
             <h3>
                 Niewe race toevoegen
             </h3>
@@ -146,17 +153,18 @@
                      
                     <div data-role="fieldcontain">
                         <label for="waypoint" class="select">Eerste kroeg: </label>
-                        <select name="waypoint" id="waypoint-select">
+                        <select data-theme="b" name="waypoint" id="waypoint-select">
                            
                             
                         </select>
                     </div>
-                    <button  data-theme="b" name="submit" id="addRace" value="submit-value">Voeg toe</button>
+                    <button data-theme="b" name="submit" id="addRace" value="submit-value">Toevoegen</button>
                 </fieldset>
             </form>
         </div>
     </div>
 
+    <!-- maps -->
     <div data-role="page" id="map-page" data-url="map-page" data-theme="e">
         <div data-role="header" data-theme="a">
             <h1>Maps</h1>
