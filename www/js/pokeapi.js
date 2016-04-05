@@ -54,7 +54,7 @@ function onDeviceReady() {
 	$(document).on('pageinit', '#pokemons', function(){ 
 
 		var storage = window.localStorage;   
-		if(storage.getItem('time-pokemonspok-set') === null){
+		if(storage.getItem('pokemons') === null){
 			var url = 'http://pokeapi.co/api/v2/', 
 			mode = 'pokemon?limit=20'      
 
@@ -72,7 +72,6 @@ function onDeviceReady() {
 
 	               	//store local
 	               	storage.setItem('pokemons', result);
-	               	storage.setItem('time-pokemon-set', event.timeStamp)
 	               	// generate list in dom
 	               	generatePokeList(result);          
 
@@ -84,6 +83,7 @@ function onDeviceReady() {
 
 		} else{
 			console.log("we zien iets in geheugen!");
+			
 			
 		}        
 });
