@@ -93,7 +93,7 @@
         <div data-role="content">
             
             <form class="ui-filterable">
-                <input id="rich-autocomplete-input" data-type="search" placeholder="Zoeken...">
+                <input id="rich-autocomplete-inputt" data-type="search" placeholder="Zoeken...">
             </form>
             <div class="example-wrapper" data-iscroll> 
                 <ul data-role="listview"  id="race-list" data-filter="true" data-inset="true" data-theme="a" data-input="#rich-autocomplete-input" > 
@@ -176,11 +176,32 @@
         </div>
     </div>   
 
+    <!-- overzicht pokemons -->
+    <div data-role="page" id="pokemons" data-theme="b"  >
+        <div data-theme="b" data-role="header" data-position="fixed" data-tap-toggle="false"  data-add-back-btn="true">
+            <a href="index.html" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>
+   
+            <h3 class="ui-title" tabindex="0" role="heading" aria-level="1">Pokemons</h3> 
+        </div>        
+        <div data-role="content">
+            
+            <form class="ui-filterable">
+                <input id="rich-autocomplete-input" data-type="search" placeholder="Zoeken...">
+            </form>
+            <div class="example-wrapper" data-iscroll> 
+                <ul data-role="listview"  id="pokemon-list" data-filter="true" data-inset="true"  data-input="#rich-autocomplete-input" > 
+
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+
 
 
 </body>  
 
-
+<script src="js/includes.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
