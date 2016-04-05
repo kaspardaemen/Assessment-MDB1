@@ -136,10 +136,10 @@ function checkScroll() {
 		            	pokemonInfo.results = result.results;
 		            	pokemonInfo.next = result.next;
 
-
-		            	pokemonInfo.results = result.results;
-		            	pokemonInfo.next = result.next;
-
+		            	$.each(result.results, function(i, row) {
+		            		console.log(row);
+		            		pokemonInfo.results.put(row);
+		            	});
 		               	// generate list in dom
 		               	generatePokeList(result); 
 		               	$.mobile.loading("hide");
