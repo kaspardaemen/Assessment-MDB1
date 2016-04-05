@@ -7,7 +7,7 @@ function onDeviceReady() {
 		});
 
 	 //event: op een pokemon geklinkt. ID van het aangeklikte id vastleggen
-	    $(document).on('vclick', '#pokemon-list li a', function(){  
+	    $(document).on('tap', '#pokemon-list li a', function(){  
 
 	    	var url = $(this).attr('data-url'); 
 	       
@@ -29,7 +29,7 @@ function onDeviceReady() {
 	               	$('#pokemon-data').append('<li>Gewicht: '+result.weight+'</li>'); 
 
 	                //types
-	                $('#pokemon-data').append('<li id="types">Type: '); 
+	                $('#pokemon-data').append('<li id="types">Type: ');  
 	                
 	                $.each(result.types, function(i, row){
 
@@ -110,7 +110,7 @@ function generatePokeList(result) {
 		
 	});
 
-	$('#pokemon-list').listview('refresh');     
+	//$('#pokemon-list').listview('refresh');     
 }
 
 
@@ -163,9 +163,9 @@ function checkScroll() {
 		            	console.log("dit hebben we:" + JSON.stringify(storage.getItem('pokemons'))); 
 		               	// generate list in dom
 		               		$.each(result.results, function(i, row) {
-						$('#pokemon-list').append('<li><a data-url='+row.url+' href="" ><h3>' + row.name + '</h3></a></li>'); 
+								$('#pokemon-list').append('<li><a data-url='+row.url+' href="" ><h3>' + row.name + '</h3></a></li>');  
 		
-					});
+							});
 
 					$('#pokemon-list').listview('refresh');         
 		               	$.mobile.loading("hide");
