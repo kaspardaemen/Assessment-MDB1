@@ -69,9 +69,9 @@ function onDeviceReady() {
 	            	//store in temp pokemonInfo
 	            	pokemonInfo.results = result;
 	            	pokemonInfo.next = result.next;
-
+	            	console.log(JSON.stringify(result)); 
 	               	//store local
-	               	storage.setItem('pokemons', result);
+	               	storage.setItem('pokemons', JSON.stringify(result));
 	               	// generate list in dom
 	               	generatePokeList(result);          
 
@@ -82,8 +82,9 @@ function onDeviceReady() {
 	           });
 
 		} else{
-			console.log("we zien iets in geheugen!");
-			
+			var retrievedObject = storage.getItem('pokemons');
+			console.log("wat krijgen we: "+ JSON.parse(retrievedObject));
+			generatePokeList(JSON.parse(retrievedObject)); 
 			
 		}        
 });
@@ -99,19 +100,6 @@ function generatePokeList(result) {
 }
 
 
-function addMore() {
-
-
-	var items = '',
-	last = $("li", page).length,
-	cont = last + 50;
-	for (var i = last; i < cont; i++) {
-		items += "<li>pokemon" + i + "</li>"; 
-	}
-	$("#list", page).append(items).listview("refresh");
-
-
-}
 /* check scroll function */
 function checkScroll() {
 
