@@ -2,10 +2,8 @@
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
- function onDeviceReady() {
-
-    
-
+ function onDeviceReady() 
+{
     //krijg de details van een café
     $(document).on('vclick', '#kroeg-list li a', function(){  
 

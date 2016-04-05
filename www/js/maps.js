@@ -2,10 +2,10 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
 
-    $('body').load('map.html', function (result) {
+    /*$('body').load('map.html', function (result) {
         $('body').append(result);
    // $(this).trigger('create');
-});
+});*/
     // 
     $(document).on('vclick', '#nav-map', function(){  
     	console.log('Je moeder is je oma');
