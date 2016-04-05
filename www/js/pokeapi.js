@@ -30,7 +30,7 @@ function onDeviceReady() {
 
 	                //types
 	                $('#pokemon-data').append('<li id="types">Type: '); 
-	                console.log(result.stats);
+	                
 	                $.each(result.types, function(i, row){
 
 	                	$('#types').append(row.type.name+', '); 
@@ -67,13 +67,21 @@ function onDeviceReady() {
 				success: function (result) {
 
 	            	//store in temp pokemonInfo
-	            	pokemonInfo.results = result;
+	            	$.each(result.results, function(i, row) {
+		            		
+		            		pokemonInfo.results.push(row); 
+		            	});
 	            	pokemonInfo.next = result.next;
-	            	console.log(JSON.stringify(result)); 
+	            	
 	               	//store local
 	               	storage.setItem('pokemons', JSON.stringify(result));
 	               	// generate list in dom
-	               	generatePokeList(result);          
+	               	$.each(result.results, function(i, row) {
+						$('#pokemon-list').append('<li><a data-url='+row.url+' href="" ><h3>' + row.name + '</h3></a></li>'); 
+		
+					});
+
+					$('#pokemon-list').listview('refresh');           
 
 	               },
 	               error: function (request,error) {
@@ -85,6 +93,7 @@ function onDeviceReady() {
 			var retrievedObject = storage.getItem('pokemons');
 			console.log("wat krijgen we: "+ JSON.parse(retrievedObject));
 			pokemonInfo.next = JSON.parse(retrievedObject).next;
+
 			generatePokeList(JSON.parse(retrievedObject)); 
 			
 		}        
@@ -92,7 +101,11 @@ function onDeviceReady() {
 
 // generate list in dom
 function generatePokeList(result) {
+	var array = result;
+	//console.log("wat gaat er fout: "+ result['results'] + result.results, result);   
 	$.each(result.results, function(i, row) {
+		console.log(row);
+		
 		$('#pokemon-list').append('<li><a data-url='+row.url+' href="" ><h3>' + row.name + '</h3></a></li>'); 
 		
 	});
@@ -113,7 +126,7 @@ function checkScroll() {
 	scrollEnd = contentHeight - screenHeight + header + footer;
 
 	if (activePage[0].id == "pokemons" && scrolled >= scrollEnd) {
-		console.log("adding...");
+		
 		addMore(activePage);
 	}
 }
@@ -122,8 +135,10 @@ function checkScroll() {
 	function addMore(page) {
 		$(document).off("scrollstop");
 		$.mobile.loading("show");
+		var storage = window.localStorage; 
+		var retrievedObject = storage.getItem('pokemons');
 		setTimeout(function() {
-			console.log("next: " + pokemonInfo.next);
+			
 			$.ajax({
 
 				url: pokemonInfo.next,
@@ -133,15 +148,26 @@ function checkScroll() {
 				success: function (result) {
 
 		            	//store in temp pokemonInfo
-		            	pokemonInfo.results = result.results;
+		            
 		            	pokemonInfo.next = result.next;
-
-		            	$.each(result.results, function(i, row) {
-		            		console.log(row);
-		            		pokemonInfo.results.put(row);
+		            	$.each(JSON.parse(retrievedObject).results, function(i, row) { 
+		            		
+		            		pokemonInfo.results.push(row); 
 		            	});
+		            	$.each(result.results, function(i, row) {
+		            		
+		            		pokemonInfo.results.push(row);
+		            	});
+		            	storage.setItem('pokemons', JSON.stringify(pokemonInfo)); 
+		            	
+		            	console.log("dit hebben we:" + JSON.stringify(storage.getItem('pokemons'))); 
 		               	// generate list in dom
-		               	generatePokeList(result); 
+		               		$.each(result.results, function(i, row) {
+						$('#pokemon-list').append('<li><a data-url='+row.url+' href="" ><h3>' + row.name + '</h3></a></li>'); 
+		
+					});
+
+					$('#pokemon-list').listview('refresh');         
 		               	$.mobile.loading("hide");
 		               	$(document).on("scrollstop", checkScroll);             
 
@@ -161,7 +187,7 @@ $(document).on("scrollstop", checkScroll);
 }
 
 var pokemonInfo = {
-	results : null, 
+	results : [], 
 	url: null,
 	next: null
 }
