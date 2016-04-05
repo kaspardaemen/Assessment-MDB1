@@ -46,7 +46,7 @@
         <div id="contenthome"  data-role="content"  >
             
             <a href="#pokemons" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Pokémon Lijst</a>
-            <a href="#pokemons" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Mijn Pokémon</a>
+            <a href="#mypokemon-page" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Mijn Pokémon</a>
             <a href="#map-page" id="nav-map" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Map</a>
              <a href="#settings" id="nav-map" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Settings</a>
 
@@ -58,7 +58,17 @@
         </div>
     </div>
 
-    <div class="page" data-role="page" id="map-page" >
+    <div data-role="page" id="mypokemon-page" data-theme="b">
+        <div data-theme="b" data-role="header">
+            <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug </a>
+            <h3>Mijn Pokémon</h3>
+        </div>
+        <div role="content">
+            Hallo dit is mijn Pokémon pagina
+        </div>
+    </div> 
+
+    <div data-role="page" id="map-page" data-theme="b">
         <div data-theme="b" data-role="header">
             <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug </a>
             <h3>Map</h3>
@@ -68,116 +78,6 @@
         </div>
 
     </div>
-
-    <!-- overzicht kroegen in de buurt -->
-    <div data-role="page" id="indebuurt" >
-        <div data-theme="a" data-role="header">
-            <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>  
-            <h3>
-                Kroegen in de buurt
-            </h3>
-        </div>        
-        <div data-role="content">
-             <p id="geolocation">Finding geolocation...</p>
-            <form class="ui-filterable">
-                <input  data-type="search" placeholder="Zoeken...">
-            </form>
-            <div class="example-wrapper" data-iscroll> 
-                <ul data-role="listview"  id="kroeg-list" data-filter="true" data-inset="true" data-theme="a" data-input="#rich-autocomplete-input" > 
-
-                </ul>
-            </div>
-        </div>
-     </div>   
-
-
-     <!-- race overzicht -->
-    
-     <!-- overzicht races -->
-   
-   <!-- overzicht races -->
-   <div data-role="page" id="races"   >
-        <div data-theme="b" data-role="header" data-add-back-btn="true">
-            <a href="index.html" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>
-   
-            <h3 class="ui-title" tabindex="0" role="heading" aria-level="1">Races</h3> 
-        </div>        
-        <div data-role="content">
-            
-            <form class="ui-filterable">
-                <input id="rich-autocomplete-inputt" data-type="search" placeholder="Zoeken...">
-            </form>
-            <div class="example-wrapper" data-iscroll> 
-                <ul data-role="listview"  id="race-list" data-filter="true" data-inset="true" data-theme="a" data-input="#rich-autocomplete-input" > 
-
-                </ul>
-                <a class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus" href="#add-race" data-role="button" data-transition="slide" data-direction="forward">Nieuwe toevoegen</a>
-            </div>
-        </div>
-    </div>   
-        
-
-    <!-- kroeg details -->
-    <div data-role="page" id="headline-kroeg"  data-theme="b">
-        <div data-theme="a" data-role="header">
-            <a href="#indebuurt" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>                        
-            <h3>
-                Kroeg info
-            </h3>
-        </div>        
-        <div data-role="content">
-            <ul data-role="listview"  id="kroeg-data" data-theme="a">
-
-            </ul>
-        </div>
-    </div>  
-
-    <!-- race details -->
-    <div data-role="page" id="headline-race" data-add-back-btn="true" data-theme="b">
-        <div  data-role="header">
-             <a href="#races" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>               
-            <h3>
-                Race info
-            </h3>
-        </div>        
-        <div data-theme="b" data-role="content">
-            <ul data-role="listview"  id="race-data" data-theme="a">
-
-            </ul>
-            <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete"  data-theme="b" name="submit" id="deleteRace" value="submit-value">Verwijderen</button>
-            <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit"  data-theme="b" name="submit" id="updateRace" value="submit-value">Aanpassen</button>
-        </div>
-    </div> 
-
-    <!-- race toevoegen -->
-    <div data-role="page" id="add-race" data-theme="b" > 
-        <div  data-role="header">
-            <a href="#races" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>                       
-            <h3>
-                Niewe race toevoegen
-            </h3>
-        </div>
-        <div data-role="content">
-            
-                <fieldset>
-                     <div data-role="fieldcontain">
-                        <label  for="name">Naam: </label>
-                        <input id="add-race-name" type="text" name="name" />
-                     </div>
-                     
-                    <div data-role="fieldcontain">
-                        <label for="waypoint" class="select">Eerste kroeg: </label>
-                        <select  name="waypoint" id="add-race-waypoint-select">
-                           
-                            
-                        </select>
-                    </div>
-                    <button  id="addRace" value="submit-value">Toevoegen</button>
-                </fieldset> 
-            
-        </div>
-    </div>
-
 
     <!-- overzicht pokemons -->
     <div class="page" data-role="page" id="pokemons"   >
@@ -239,18 +139,19 @@
 
 </body>  
 
-<script src="js/includes.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="js/jquery.mobile-1.4.5.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6OzlNVFMwMevHcoelYEg_Fv3Dxwt73XM&libraries=places,drawing,geometry"
     async defer></script>
-<script src="js/Places.js"></script>  
 <script src="js/maps.js"></script>
-<script src="js/RESTapi.js"></script>
 <script src="js/pokeapi.js"></script>
+<<<<<<< HEAD
+<script src="js/mypokemon.js"></script>
+=======
 <script src="js/settings.js"></script>
+>>>>>>> origin/master
 
 </body>
 </html>
