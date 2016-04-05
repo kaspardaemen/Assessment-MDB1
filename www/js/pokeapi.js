@@ -81,9 +81,8 @@ function onDeviceReady() {
 		
 					});
 
-					$('#pokemon-list').listview('refresh'); 
-					//gaat verkeerd bij twee keer refresh          
-					$(".ui-last-child").removeClass("ui-last-child"); 
+					$('#pokemon-list').listview('refresh');           
+
 	               },
 	               error: function (request,error) {
 	               	console.log('Network error has occurred please try again!');  
@@ -168,7 +167,7 @@ function checkScroll() {
 		
 							});
 
-				      
+					//	$('#pokemon-list').listview('refresh');         
 		               	$.mobile.loading("hide");
 		               	$(document).on("scrollstop", checkScroll);             
 
