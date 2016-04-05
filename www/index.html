@@ -32,23 +32,25 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
     <title>Kroeg race</title>
 </head>
 <body>
     <!-- home -->
-    <div data-role="page" id="home" data-theme="b">
+    <div class="page" data-role="page" id="home" data-theme="b" >
 
         <div data-role="header">
             <h1>Kroeg race</h1>
         </div><!-- /header -->
 
-        <div data-role="content"  >  
+        <div id="contenthome" data-role="content" data-theme="a"  >  
 
            
-            <p><a href="#races" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-bars" data-role="button">Race overzicht</a></p>   
-            <p><a href="#users" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Gebruiker overzicht</a></p>
-            <p><a href="#map-page" id="nav-map" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Map</a></p> 
-            <p><a href="#pokemons" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Alle pokemons</a></p>   
+            <p><a data-theme="a" href="#races" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-bars" data-role="button">Race overzicht</a></p>   
+            <p><a data-theme="a" href="#users" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Gebruiker overzicht</a></p>
+            <p><a data-theme="a" href="#map-page" id="nav-map" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Map</a></p> 
+            <p><a data-theme="a" href="#pokemons" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Alle pokemons</a></p> 
+            <p><a data-theme="a" href="#settings" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Instellingen</a></p>   
 
         </div><!-- /content -->
 
@@ -57,7 +59,7 @@
         </div><!-- /footer -->
     </div>
 
-    <div data-role="page" id="map-page" data-theme="b">
+    <div class="page" data-role="page" id="map-page" >
         <div data-theme="b" data-role="header">
             <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug </a>
             <h3>Map pagina</h3>
@@ -68,7 +70,7 @@
     </div>
 
     <!-- overzicht kroegen in de buurt -->
-    <div data-role="page" id="indebuurt" data-theme="b" >
+    <div data-role="page" id="indebuurt" >
         <div data-theme="a" data-role="header">
             <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug</a>  
             <h3>
@@ -94,7 +96,7 @@
      <!-- overzicht races -->
    
    <!-- overzicht races -->
-   <div data-role="page" id="races" data-theme="b"  >
+   <div data-role="page" id="races"   >
         <div data-theme="b" data-role="header" data-add-back-btn="true">
             <a href="index.html" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>
    
@@ -149,7 +151,7 @@
 
     <!-- race toevoegen -->
     <div data-role="page" id="add-race" data-theme="b" > 
-        <div data-theme="b" data-role="header">
+        <div  data-role="header">
             <a href="#races" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>                       
             <h3>
                 Niewe race toevoegen
@@ -165,20 +167,20 @@
                      
                     <div data-role="fieldcontain">
                         <label for="waypoint" class="select">Eerste kroeg: </label>
-                        <select data-theme="b" name="waypoint" id="add-race-waypoint-select">
+                        <select  name="waypoint" id="add-race-waypoint-select">
                            
                             
                         </select>
                     </div>
-                    <button data-theme="b"  id="addRace" value="submit-value">Toevoegen</button>
+                    <button  id="addRace" value="submit-value">Toevoegen</button>
                 </fieldset>
             
         </div>
     </div>
 
     <!-- overzicht pokemons -->
-    <div data-role="page" id="pokemons" data-theme="b"  >
-        <div data-theme="b" data-role="header" data-position="fixed" data-tap-toggle="false"  data-add-back-btn="true">
+    <div class="page" data-role="page" id="pokemons"   >
+        <div  data-role="header" data-position="fixed" data-tap-toggle="false"  data-add-back-btn="true">
             <a href="index.html" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>
    
             <h3 class="ui-title" tabindex="0" role="heading" aria-level="1">Pokemons</h3> 
@@ -197,18 +199,39 @@
         </div>
     </div>
 
-    <div data-role="page" id="headline-pokemon" data-add-back-btn="true" data-theme="b">
+    <!-- details pokemon -->
+    <div class="page" data-role="page" id="headline-pokemon" data-add-back-btn="true" >
         <div  data-role="header">
              <a href="#pokemons" id="reversebutton" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>                 
             <h3>
                 Pokémon info
             </h3>
         </div>        
-        <div data-theme="b" data-role="content">
+        <div  data-role="content">
             <ul data-role="listview"  id="pokemon-data" > 
 
             </ul>
             
+        </div>
+    </div>
+
+     <div class="page" data-role="page" id="settings" data-add-back-btn="true" >
+        <div  data-role="header">
+             <a href="index.html" id="reversebutton" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>                 
+            <h3>
+                Instellingen
+            </h3>
+        </div>   
+
+        <div  data-role="content">
+            <form>
+            <label for="Theme" id="flip-1-label" class="ui-slider">Applicatie weergave:</label>
+           <select name="Theme" id="themeswitch" data-role="slider" class="ui-slider-switch">
+                <option value="b">Donker</option>
+                <option value="a">Licht</option> 
+            </select>
+             <input type="submit"  id="changeTheme" value="submit"  />
+            </form>
         </div>
     </div>
 
@@ -226,6 +249,7 @@
 <script src="js/maps.js"></script>
 <script src="js/RESTapi.js"></script>
 <script src="js/pokeapi.js"></script>
+<script src="js/settings.js"></script>
 
 </body>
 </html>
