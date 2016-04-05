@@ -45,7 +45,7 @@
         <div data-role="content"  >
             
             <a href="#pokemons" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Pokémon Lijst</a>
-            <a href="#pokemons" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Mijn Pokémon</a>
+            <a href="#mypokemon-page" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Mijn Pokémon</a>
             <a href="#map-page" id="nav-map" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Map</a>
 
         </div>
@@ -54,6 +54,16 @@
             <h5>All Rights Reserved.</h5>
         </div>
     </div>
+
+    <div data-role="page" id="mypokemon-page" data-theme="b">
+        <div data-theme="b" data-role="header">
+            <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug </a>
+            <h3>Mijn Pokémon</h3>
+        </div>
+        <div role="content">
+            Hallo dit is mijn Pokémon pagina
+        </div>
+    </div> 
 
     <div data-role="page" id="map-page" data-theme="b">
         <div data-theme="b" data-role="header">
@@ -104,17 +114,15 @@
 
 </body>  
 
-<script src="js/includes.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="js/jquery.mobile-1.4.5.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6OzlNVFMwMevHcoelYEg_Fv3Dxwt73XM&libraries=places,drawing,geometry"
     async defer></script>
-<script src="js/Places.js"></script>  
 <script src="js/maps.js"></script>
-<script src="js/RESTapi.js"></script>
 <script src="js/pokeapi.js"></script>
+<script src="js/mypokemon.js"></script>
 
 </body>
 </html>
