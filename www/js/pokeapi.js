@@ -7,7 +7,7 @@ function onDeviceReady() {
 		});
 
 	 //event: op een pokemon geklinkt. ID van het aangeklikte id vastleggen
-	    $(document).on('vclick', '#pokemon-list li a', function(){  
+	    $(document).on('tap', '#pokemon-list li a', function(){  
 
 	    	var url = $(this).attr('data-url'); 
 	       
@@ -29,7 +29,7 @@ function onDeviceReady() {
 	               	$('#pokemon-data').append('<li>Gewicht: '+result.weight+'</li>'); 
 
 	                //types
-	                $('#pokemon-data').append('<li id="types">Type: '); 
+	                $('#pokemon-data').append('<li id="types">Type: ');  
 	                
 	                $.each(result.types, function(i, row){
 
