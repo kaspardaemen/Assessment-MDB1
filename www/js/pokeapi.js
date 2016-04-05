@@ -54,7 +54,7 @@ function onDeviceReady() {
 	$(document).on('pageinit', '#pokemons', function(){ 
 
 		var storage = window.localStorage;   
-		/*if(storage.getItem('pokemons') === null){ */
+		if(storage.getItem('pokemon-list') === null){ 
 			var url = 'http://pokeapi.co/api/v2/', 
 			mode = 'pokemon?limit=20'      
 
@@ -71,7 +71,7 @@ function onDeviceReady() {
 	            	pokemonInfo.next = result.next;
 	            	console.log(JSON.stringify(result)); 
 	               	//store local
-	               	storage.setItem('pokemons', JSON.stringify(result));
+	               	storage.setItem('pokemon-list', JSON.stringify(result));
 	               	// generate list in dom
 	               	generatePokeList(result);          
 
@@ -81,13 +81,13 @@ function onDeviceReady() {
 	               }
 	           });
 
-		/* } else{
-			var retrievedObject = storage.getItem('pokemons');
-			console.log("wat krijgen we: "+ JSON.parse(retrievedObject));
-			pokemonInfo.next = JSON.parse(retrievedObject.next);
-			generatePokeList(JSON.parse(retrievedObject)); 
+		} else{
+			var retrievedObject = storage.getItem('pokemon-list');
 			
-		}      */  
+			pokemonInfo.next = JSON.parse(retrievedObject.next);
+			generatePokeList(JSON.parse(retrievedObject));  
+			
+		}        
 });
 
 // generate list in dom
@@ -137,13 +137,10 @@ function checkScroll() {
 		            	pokemonInfo.next = result.next;
 
 
-		            	pokemonInfo.results = result.results;
-		            	pokemonInfo.next = result.next;
-
 		               	// generate list in dom
 		               	generatePokeList(result); 
 		               	$.mobile.loading("hide");
-		               	$(document).on("scrollstop", checkScroll);             
+		                         
 
 		               },
 		               error: function (request,error) {
