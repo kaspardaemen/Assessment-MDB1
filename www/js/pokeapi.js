@@ -110,7 +110,7 @@ function generatePokeList(result) {
 		
 	});
 
-	$('#pokemon-list').listview('refresh');     
+	//$('#pokemon-list').listview('refresh');     
 }
 
 
@@ -163,9 +163,9 @@ function checkScroll() {
 		            	console.log("dit hebben we:" + JSON.stringify(storage.getItem('pokemons'))); 
 		               	// generate list in dom
 		               		$.each(result.results, function(i, row) {
-						$('#pokemon-list').append('<li><a data-url='+row.url+' href="" ><h3>' + row.name + '</h3></a></li>'); 
+								$('#pokemon-list').append('<li><a data-url='+row.url+' href="" ><h3>' + row.name + '</h3></a></li>');  
 		
-					});
+							});
 
 					$('#pokemon-list').listview('refresh');         
 		               	$.mobile.loading("hide");
