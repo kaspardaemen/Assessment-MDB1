@@ -166,16 +166,6 @@
         </div>
     </div>
 
-    <!-- maps -->
-    <div data-role="page" id="map-page" data-url="map-page" data-theme="e" data-dom-cache="true">
-        <div data-role="header" data-theme="a">
-            <h1>Maps</h1>
-        </div>
-        <div role="main" class="ui-content" id="map-canvas">
-            <!-- map loads here... -->
-        </div>
-    </div>   
-
     <!-- overzicht pokemons -->
     <div data-role="page" id="pokemons" data-theme="b"  >
         <div data-theme="b" data-role="header" data-position="fixed" data-tap-toggle="false"  data-add-back-btn="true">
@@ -196,6 +186,33 @@
             </div>
         </div>
     </div>
+
+    <div data-role="page" id="headline-pokemon" data-add-back-btn="true" data-theme="b">
+        <div  data-role="header">
+             <a href="#pokemons" id="reversebutton" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>                 
+            <h3>
+                Pokémon info
+            </h3>
+        </div>        
+        <div data-theme="b" data-role="content">
+            <ul data-role="listview"  id="pokemon-data">
+
+            </ul>
+            
+        </div>
+    </div> 
+
+    <!-- maps -->
+    <div data-role="page" id="map-page" data-url="map-page" data-theme="e" data-dom-cache="true">
+        <div data-role="header" data-theme="a">
+            <h1>Maps</h1>
+        </div>
+        <div role="main" class="ui-content" id="map-canvas">
+            <!-- map loads here... -->
+        </div>
+    </div>   
+
+    
 
 
 
