@@ -1,9 +1,7 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
-function onDeviceReady() {
-
-    // Define the LatLng coordinates for the polygon's path.
-    var denBoschCoords = [
+// Define the LatLng coordinates for the polygon's path.
+var denBoschCoords = [
         { lat: 51.691074816112994, lng : 5.249748229980469},
         { lat: 51.70990601725464, lng : 5.263996124267578},
         { lat: 51.711395156348466, lng : 5.293178558349609},
@@ -13,22 +11,21 @@ function onDeviceReady() {
         { lat: 51.677664778834455, lng : 5.292148590087891},
     ];
 
+var spawnPoints = [];
+
+function onDeviceReady() {
+
     $(document).on('pageshow', '#map-page', function(){
         console.log('ShowMap');
         InitializeMap();
-
     });
 
     function InitializeMap(){
 
         console.log('InitializeMap');
-
-        /*
-        * Google Maps documentation: http://code.google.com/apis/maps/documentation/javascript/basics.html
-        * Geolocation documentation: http://dev.w3.org/geo/api/spec-source.html
-        */
     	
-        var defaultLatLng = new google.maps.LatLng(51.687968, 5.286327);  // Default to Hollywood, CA when no geolocation support
+        // Avans Hogeschool Den Bosch
+        var defaultLatLng = new google.maps.LatLng(51.687968, 5.286327);
 
     	/*if (navigator.geolocation ) {
     		function success(pos) {
@@ -70,15 +67,37 @@ function onDeviceReady() {
             });
 
             denBoschPolygon.setMap(map);
+            GenerateSpawnPoints(map, denBoschPolygon);
 
-            // Add an overlay to the map of current lat/lng
-            var marker = new google.maps.Marker({
-                position: latlng,
-                map: map,
-                title: "Greetings!"
-            });
     	}
 
-    };// End CreateMap
+    };
+    // End CreateMap
+
+    function GenerateSpawnPoints(map, polygon){
+
+        var bounds = new google.maps.LatLngBounds();
+
+        // calculate the bounds of the polygon
+        for (var i=0; i < polygon.getPath().getLength(); i++) {
+            bounds.extend(polygon.getPath().getAt(i));
+        }
+
+        var sw = bounds.getSouthWest();
+        var ne = bounds.getNorthEast();
+
+        for (var i = 0; i < 100; i++) {
+            var ptLat = Math.random() * (ne.lat() - sw.lat()) + sw.lat();
+            var ptLng = Math.random() * (ne.lng() - sw.lng()) + sw.lng();
+            var point = new google.maps.LatLng(ptLat,ptLng);
+
+
+            if (google.maps.geometry.poly.containsLocation(point, polygon)) {
+                spawnPoints.push(new google.maps.Marker({position:point, map:map}));
+            }
+
     
+        }
+    };
+     
 }
