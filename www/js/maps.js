@@ -1,8 +1,56 @@
+document.addEventListener("deviceready", onDeviceReady, false);
+
+ function onDeviceReady() {
+
+    //krijg de details van een café
+    $(document).on('vclick', '#pokemap', function(){  
+    	console.log('Je moeder is je oma');
+    	$.mobile.changePage( "#pokemap", { transition: "slide", changeHash: false });
+    });
+
+
+    $.mobile.pageContainer.pagecontainer('load', '../map.html');    
+}
+
+/*console.log('run MAP.js');
+
+document.addEventListener("deviceready", map, false);
+
+function map() {
+
+	$(document).on('pageinit', '#pokemap', function(){ 
+		console.log('POKEMAP');
+	});
+
+	/*console.log('MAP onDeviceReady');
+	$(document).on("loadmap", function(){
+		console.log('loadmap page!!!!');
+		$.mobile.loadPage("../map.html");
+		alert('dsfsdf');
+	});*/
+//});
+
+/*
+function initMap() {
+    var mapDiv = document.getElementById('pokemap');
+    var map = new google.maps.Map(mapDiv);
+};
+
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
  function onDeviceReady() {
+ 	$(document).ready(function(){
+
+
+ 	});
+
 	$( document ).on( "pageinit", "#map-page", function() {
+
+
+
+
+
 	    var defaultLatLng = new google.maps.LatLng(34.0983425, -118.3267434);  // Default to Hollywood, CA when no geolocation support
 	    if ( navigator.geolocation ) {
 	        function success(pos) {
@@ -33,4 +81,4 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	    }
 	});
 
- }
+ }*/
