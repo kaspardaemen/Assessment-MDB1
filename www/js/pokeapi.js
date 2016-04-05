@@ -54,7 +54,7 @@ function onDeviceReady() {
 	$(document).on('pageinit', '#pokemons', function(){ 
 
 		var storage = window.localStorage;   
-		if(storage.getItem('pokemons') === null){
+		/*if(storage.getItem('pokemons') === null){ */
 			var url = 'http://pokeapi.co/api/v2/', 
 			mode = 'pokemon?limit=20'      
 
@@ -81,12 +81,13 @@ function onDeviceReady() {
 	               }
 	           });
 
-		} else{
+		/* } else{
 			var retrievedObject = storage.getItem('pokemons');
 			console.log("wat krijgen we: "+ JSON.parse(retrievedObject));
+			pokemonInfo.next = JSON.parse(retrievedObject.next);
 			generatePokeList(JSON.parse(retrievedObject)); 
 			
-		}        
+		}      */  
 });
 
 // generate list in dom
