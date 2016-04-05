@@ -36,37 +36,37 @@
     <title>Kroeg race</title>
 </head>
 <body>
-    <!-- home -->
-    <div class="page" data-role="page" id="home" data-theme="b" >
+
+    <div data-role="page" id="home" data-theme="b">
 
         <div data-role="header">
-            <h1>Kroeg race</h1>
-        </div><!-- /header -->
+            <h1>Pokédex</h1>
+        </div>
 
-        <div id="contenthome" data-role="content" data-theme="a"  >  
+        <div id="contenthome"  data-role="content"  >
+            
+            <a href="#pokemons" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Pokémon Lijst</a>
+            <a href="#pokemons" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Mijn Pokémon</a>
+            <a href="#map-page" id="nav-map" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Map</a>
+             <a href="#settings" id="nav-map" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Settings</a>
 
-           
-            <p><a data-theme="a" href="#races" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-bars" data-role="button">Race overzicht</a></p>   
-            <p><a data-theme="a" href="#users" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Gebruiker overzicht</a></p>
-            <p><a data-theme="a" href="#map-page" id="nav-map" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Map</a></p> 
-            <p><a data-theme="a" href="#pokemons" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Alle pokemons</a></p> 
-            <p><a data-theme="a" href="#settings" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Instellingen</a></p>   
 
-        </div><!-- /content -->
+        </div>
 
         <div data-role="footer" >
             <h5>All Rights Reserved.</h5>
-        </div><!-- /footer -->
+        </div>
     </div>
 
     <div class="page" data-role="page" id="map-page" >
         <div data-theme="b" data-role="header">
             <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug </a>
-            <h3>Map pagina</h3>
+            <h3>Map</h3>
         </div>
         <div role="content" id="map-canvas">
             <!-- map loads here... -->
         </div>
+
     </div>
 
     <!-- overzicht kroegen in de buurt -->
@@ -173,10 +173,11 @@
                         </select>
                     </div>
                     <button  id="addRace" value="submit-value">Toevoegen</button>
-                </fieldset>
+                </fieldset> 
             
         </div>
     </div>
+
 
     <!-- overzicht pokemons -->
     <div class="page" data-role="page" id="pokemons"   >
@@ -227,10 +228,10 @@
             <form>
             <label for="Theme" id="flip-1-label" class="ui-slider">Applicatie weergave:</label>
            <select name="Theme" id="themeswitch" data-role="slider" class="ui-slider-switch">
-                <option value="b">Donker</option>
-                <option value="a">Licht</option> 
+                <option value="a">Licht</option>
+                <option value="b">Donker</option> 
             </select>
-             <input type="submit"  id="changeTheme" value="submit"  />
+             <input type="submit"  id="changeTheme" value="Opslaan"  />
             </form>
         </div>
     </div>
