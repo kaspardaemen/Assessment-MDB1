@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
     <title>Kroeg race</title>
 </head>
 <body>
@@ -42,11 +43,13 @@
             <h1>Pokédex</h1>
         </div>
 
-        <div data-role="content"  >
+        <div id="contenthome"  data-role="content"  >
             
             <a href="#pokemons" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Pokémon Lijst</a>
             <a href="#mypokemon-page" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Mijn Pokémon</a>
             <a href="#map-page" id="nav-map" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Map</a>
+             <a href="#settings" id="nav-map" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Settings</a>
+
 
         </div>
 
@@ -73,11 +76,12 @@
         <div role="content" id="map-canvas">
             <!-- map loads here... -->
         </div>
-    </div>   
+
+    </div>
 
     <!-- overzicht pokemons -->
-    <div data-role="page" id="pokemons" data-theme="b"  >
-        <div data-theme="b" data-role="header" data-position="fixed" data-tap-toggle="false"  data-add-back-btn="true">
+    <div class="page" data-role="page" id="pokemons"   >
+        <div  data-role="header" data-position="fixed" data-tap-toggle="false"  data-add-back-btn="true">
             <a href="index.html" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>
    
             <h3 class="ui-title" tabindex="0" role="heading" aria-level="1">Pokemons</h3> 
@@ -96,18 +100,39 @@
         </div>
     </div>
 
-    <div data-role="page" id="headline-pokemon" data-add-back-btn="true" data-theme="b">
+    <!-- details pokemon -->
+    <div class="page" data-role="page" id="headline-pokemon" data-add-back-btn="true" >
         <div  data-role="header">
              <a href="#pokemons" id="reversebutton" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>                 
             <h3>
                 Pokémon info
             </h3>
         </div>        
-        <div data-theme="b" data-role="content">
+        <div  data-role="content">
             <ul data-role="listview"  id="pokemon-data" > 
 
             </ul>
             
+        </div>
+    </div>
+
+     <div class="page" data-role="page" id="settings" data-add-back-btn="true" >
+        <div  data-role="header">
+             <a href="index.html" id="reversebutton" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>                 
+            <h3>
+                Instellingen
+            </h3>
+        </div>   
+
+        <div  data-role="content">
+            <form>
+            <label for="Theme" id="flip-1-label" class="ui-slider">Applicatie weergave:</label>
+           <select name="Theme" id="themeswitch" data-role="slider" class="ui-slider-switch">
+                <option value="a">Licht</option>
+                <option value="b">Donker</option> 
+            </select>
+             <input type="submit"  id="changeTheme" value="Opslaan"  />
+            </form>
         </div>
     </div>
 
@@ -122,7 +147,11 @@
     async defer></script>
 <script src="js/maps.js"></script>
 <script src="js/pokeapi.js"></script>
+<<<<<<< HEAD
 <script src="js/mypokemon.js"></script>
+=======
+<script src="js/settings.js"></script>
+>>>>>>> origin/master
 
 </body>
 </html>
