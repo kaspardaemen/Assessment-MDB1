@@ -69,6 +69,7 @@
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
   <allow-intent href="geo:*"/>
+  <access uri="https://rocky-meadow-19237.herokuapp.com/" subdomains="true" />  
   <platform name="android">
     <allow-intent href="market:*"/>
   </platform>

@@ -4,7 +4,7 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
  function onDeviceReady() {
-
+ 	
 
 
  	 //event: op een race geklinkt. ID van het aangeklikte id vastleggen

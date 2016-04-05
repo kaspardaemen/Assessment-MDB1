@@ -1,0 +1,19 @@
+<div data-role="page" id="pokemons" data-theme="b"  >
+        <div data-theme="b" data-role="header" data-add-back-btn="true">
+            <a href="index.html" data-icon="back"  data-transition="slide" data-direction="reverse">Terug</a>
+   
+            <h3 class="ui-title" tabindex="0" role="heading" aria-level="1">Races</h3> 
+        </div>        
+        <div data-role="content">
+            
+            <form class="ui-filterable">
+                <input id="rich-autocomplete-input" data-type="search" placeholder="Zoeken...">
+            </form>
+            <div class="example-wrapper" data-iscroll> 
+                <ul data-role="listview"  id="race-list" data-filter="true" data-inset="true" data-theme="a" data-input="#rich-autocomplete-input" > 
+
+                </ul>
+                <a class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus" href="#add-race" data-role="button" data-transition="slide" data-direction="forward">Nieuwe toevoegen</a>
+            </div>
+        </div>
+    </div>
