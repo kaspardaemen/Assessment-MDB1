@@ -47,7 +47,7 @@
             <p><a href="#indebuurt" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location"  data-role="button">Kroegen in de buurt</a></p> 
             <p><a href="#races" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-bars" data-role="button">Race overzicht</a></p>   
             <p><a href="#users" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Gebruiker overzicht</a></p>
-            <p><a id="pokemap-nav" href="#pokemap" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Pokemap</a></p> 
+            <p><a href="#map-page" id="nav-map" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Map</a></p> 
             <p><a href="#pokemons" data-transition="slide" data-direction="forward" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" data-role="button">Alle pokemons</a></p>   
 
         </div><!-- /content -->
@@ -55,6 +55,16 @@
         <div data-role="footer" >
             <h5>All Rights Reserved.</h5>
         </div><!-- /footer -->
+    </div>
+
+    <div data-role="page" id="map-page" data-theme="b">
+        <div data-theme="b" data-role="header">
+            <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Terug </a>
+            <h3>Map pagina</h3>
+        </div>
+        <div role="content" id="map-canvas">
+            <!-- map loads here... -->
+        </div>
     </div>
 
     <!-- overzicht kroegen in de buurt -->
@@ -200,20 +210,7 @@
             </ul>
             
         </div>
-    </div> 
-
-    <!-- maps -->
-    <div data-role="page" id="map-page" data-url="map-page" data-theme="e" data-dom-cache="true">
-        <div data-role="header" data-theme="a">
-            <h1>Maps</h1>
-        </div>
-        <div role="main" class="ui-content" id="map-canvas">
-            <!-- map loads here... -->
-        </div>
-    </div>   
-
-    
-
+    </div>
 
 
 </body>  
