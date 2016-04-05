@@ -4,68 +4,73 @@ var apiBaseUrl = 'http://pokeapi.co/api/v2/';
 
 function onDeviceReady() {
 
-
+    //window.localStorage.removeItem('my_pokemon');
     var pStore = window.localStorage;
-   
-    if(pStore.getItem('pokemon')){
-        console.log('Current Pokémon in localStorage');
+    var myPokemon = [];
 
-        var pokemon = JSON.parse(pStore.getItem('pokemon'));
+    // Get my Pokémon from localStorage
+    if(pStore.getItem('my_pokemon')){
+        
+        myPokemon = JSON.parse(pStore.getItem('my_pokemon'));
 
-        for(i = 0; i < pokemon.length; i++){
-            console.log(pokemon[i]);
+        console.log(myPokemon.length);
+        for(i = 0; i < myPokemon.length; i++){
+            console.log('Hoi');
+            //var pokemon = JSON.parse(myPokemon[i]);
+            //myPokemon[i] = pokemon;
         }
-        console.log(pokemon.length);
-        console.log(pokemon);
+        console.log('Current Pokémon in localStorage');
+        console.log(myPokemon);
     }
-    else {
-        console.log('Geen value');
-        pStore.setItem('pokemon', JSON.stringify([]));
-    }
-
+    
     $(document).on('pageshow', '#mypokemon-page', function(){
         console.log('ShowMyPokemon');
+        CreateMyPokémonList();
     });
+
 
     $(document).on('pagebeforeshow', '#mypokemon-page', function(){
         console.log('Before show!!!');
         FetchPokemon(1, 3);
     });
 
+    function CreateMyPokémonList(){
+
+        console.log('CreateMyPokémonList');
+        if(myPokemon.length == 0){
+            $('#mypokemon-page ul').append('<li>Je hebt geen Pokémon</li>');
+        }
+        else {
+            for(i = 0; i < myPokemon.length; i++){
+                $('#mypokemon-page ul').append('<li>' + myPokemon[i].name + '</li>');
+            }
+        }
+    }
+
    
 
     function FetchPokemon(startId, endId){
 
-        console.log('Jajaa');
         for (pokemonId = startId; pokemonId <= endId; pokemonId++) {
 
             $.ajax({
-                url : apiBaseUrl + 'pokemon/1/',
+                url : apiBaseUrl + 'pokemon/' + pokemonId,
                 type : 'GET',
                 success : function(result){
-                    console.log('Ajax call');
-                    console.log(result);
-                    SaveDataToLocalStorage(pokemon);
+                    myPokemon.push(JSON.parse(result));
+                    SaveDataToLocalStorage('my_pokemon', myPokemon);
                 },
                 error : function(result){}
             });
         }
-
-        console.log(pStore.getItem('pokemon'));
         
     }
 
-    function SaveDataToLocalStorage(pokemon){
+    function SaveDataToLocalStorage(key, data){
 
-        var a = [];
-
-        // Parse the serialized data back into an aray of objects
-        a = JSON.parse(pStore.getItem('pokemon'));
-
-        // Push the new data (whether it be an object or anything else) onto the array
-        a.push(JSON.stringify(pokemon));
+        console.log('Save to LocalStorage');
         
         // Re-serialize the array back into a string and store it in localStorage
-        pStore.setItem('pokemon', JSON.stringify(a));
+        pStore.setItem(key, JSON.stringify(myPokemon));
     }
 }
