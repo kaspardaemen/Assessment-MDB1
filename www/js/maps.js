@@ -22,16 +22,18 @@ function onDeviceReady() {
         InitializeMap();
     });
 
-    $(document).on('pageshow', '#catch-page', function(){
-        console.log('Catch pokemon');
+    $(document).on('pagebeforeshow', '#catch-page', function(){
+
         $('#catch-page audio').attr({'src' : '../res/107-battle-vs-wild-pokemon-.mp3', 'autoplay' : 'autoplay'});
         $('#catch-page #catch').empty(); // Clear page
         $('#catch-page button').hide();
-       
+    });
+
+    $(document).on('pageshow', '#catch-page', function(){
+        console.log('Catch pokemon');
         var randomPokemon = function(){
+
             GetPokemonById(Math.floor((Math.random() * 100) + 1), function(pokemon){
-                console.log('random pokemon');
-                console.log(pokemon);
                 if(pokemon.details){
                     randomPokemon();
                 }
@@ -46,7 +48,6 @@ function onDeviceReady() {
     <tr><th>Gewicht</th><td>'+ pokemon.weight+'</td></tr>\
     </tbody></table>');
                     $('#catch-page #catch').append('<img src="' + pokemon.sprites.front_default + '" />');
-  
                     $('#catch-page button').show();
 
 
