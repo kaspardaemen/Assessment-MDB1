@@ -2,29 +2,28 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
 
+    // My Pokémon List Page pageshow Handler
     $(document).on('pageshow', '#mypokemon-page', function(){
-        console.log('ShowMyPokemon');
         CreateMyPokémonList();
     });
 
+    // Fill list with caught Pokémon
     function CreateMyPokémonList(){
 
         console.log('CreateMyPokémonList');
-        console.log(MyPokemon);
 
         $('#mypokemon-page ul').empty();
 
-        if(MyPokemon.length == 0){
+        if(MyPokemon.length <= 0){
             $('#mypokemon-page ul').append('<li>Je hebt nog geen Pokémon gevangen!</li>');
-            return;
+        }
+        else{
+            $.each(MyPokemon, function(index, value){
+                $('#mypokemon-page ul').append('<li>\
+                    <img src="'+ value.sprites.front_default +'" />' + value.name + '</li>');
+            });
         }
 
-        for(i = 0; i < MyPokemon.length; i++){
-
-            GetPokemonById(MyPokemon[i].id, function(pokemon){
-                $('#mypokemon-page ul').append('<li>' + pokemon.name + '</li>');
-            });
-                
-        }  
+        $('#mypokemon-page ul').listview('refresh');  
     }
 }
