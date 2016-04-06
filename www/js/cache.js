@@ -16,7 +16,7 @@ var GetPokemonById = function(pokemonId, callback){
 
   found = Pokemon.filter(function( obj ) {
     console.log('Searching Pokémon in cache');
-    return obj.id == pokemonId;
+    return obj.id == pokemonId || obj.name == pokemonId; 
   });
 
   if(found.length == 0){
