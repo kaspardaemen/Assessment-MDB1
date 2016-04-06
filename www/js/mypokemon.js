@@ -14,6 +14,11 @@ function onDeviceReady() {
 
         $('#mypokemon-page ul').empty();
 
+        if(MyPokemon.length == 0){
+            $('#mypokemon-page ul').append('<li>Je hebt nog geen Pokémon gevangen!</li>');
+            return;
+        }
+
         for(i = 0; i < MyPokemon.length; i++){
 
             GetPokemonById(MyPokemon[i].id, function(pokemon){
