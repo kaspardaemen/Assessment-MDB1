@@ -24,6 +24,11 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	      	console.log(window.localStorage.getItem('theme'));
 
 	    });
+
+    $(document).on('vclick', '#clearcache', function(){
+      console.log('clear cache');
+      window.localStorage.removeItem('pokemon');
+    });
 };
 
 
