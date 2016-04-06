@@ -4,14 +4,22 @@ function onDeviceReady() {
 
 
 
+if(pStore.getItem('pokemon')){
+  Pokemon = JSON.parse(pStore.getItem('pokemon'));
+
+  console.log('Current Pokémon in localStorage');
+  console.log(Pokemon);
+}
+
+
 		$(document).on('vclick', '#reversebutton', function(){
 			$('#pokemon-data').empty();
 		});
 
 	 //event: op een pokemon geklinkt. detail pagina opvragen
-	    $(document).on('swiperight', '#pokemon-list li a', function(){   
+	    $(document).on('swipeleft', '#pokemon-list li a', function(){  
 
-	    	var name = $(this).attr('data-name');
+	    	var url = $(this).attr('data-url');
 	       	console.log("LOG VAN KASPAR:",name); 
 	        $.mobile.changePage( "#headline-pokemon", { transition: "slide", changeHash: false });
 	        $.mobile.loading( 'show', {
@@ -19,8 +27,35 @@ function onDeviceReady() {
 				textVisible: true,
 				theme: 'b',
 				html: ""
-			});  
+			});
 
+			 $.ajax({
+			      url : url,
+			      type : 'GET',
+			      success : function(result){
+
+			         //naam
+	                $('#pokemon-data').append('<li><img src="'+result.sprites.front_default+'" /></li>');
+	                $('#pokemon-data').append('<li>Naam: '+result.name+'</li>');
+	                $('#pokemon-data').append('<li>Lengte: '+result.height+'</li>');
+	               	$('#pokemon-data').append('<li>Gewicht: '+result.weight+'</li>');  
+
+	                //types
+	                $('#pokemon-data').append('<li id="types">Type: ');  
+	                
+	                $.each(result.types, function(i, row){
+
+	                	$('#types').append(row.type.name+', '); 
+	                });
+	        		$('#pokemon-data').append('</li>');
+	                		
+	                $('#pokemon-data').listview('refresh'); 
+	                $.mobile.loading('hide');
+
+			      },
+			      error : function(result){}
+			    });  
+/*
 			 GetPokemonById( name ,function(result){
                 $('#pokemon-data').empty();
 					
@@ -41,7 +76,7 @@ function onDeviceReady() {
 	                		
 	                $('#pokemon-data').listview('refresh'); 
 	                $.mobile.loading('hide');
-            });
+            });*/
 
 	       /* $.ajax({
 				url: url ,
@@ -214,6 +249,61 @@ function checkScroll() {
 
 	}, 500);
 }
+
+var GetPokemonById = function(pokemonId, callback){
+
+  found = Pokemon.filter(function( obj ) {
+    console.log('Searching Pokémon in cache');
+    return obj.id == pokemonId || obj.name == pokemonId; 
+  });
+
+  if(found.length == 0){
+    console.log('Call Pokémon API');
+
+    $.ajax({
+      url : apiBaseUrl + 'pokemon/' + pokemonId,
+      type : 'GET',
+      success : function(result){
+
+        var parsedresult = JSON.parse(result)
+
+        if(parsedresult.detail == 'Not found.')
+        {
+          return;
+        }
+
+        Pokemon.push(parsedresult);
+        SavePokemon();
+        callback(parsedresult);
+
+      },
+      error : function(result){}
+    });
+  }
+  else {
+    console.log('Maak geen call Pokémon zit in cache');
+    callback(found[0])
+  }
+
+};
+
+function SavePokemon(){
+  // Re-serialize the array back into a string and store it in localStorage
+  pStore.setItem('pokemon', JSON.stringify(Pokemon));
+}
+
+function onDeviceReady() {
+
+  GetPokemonById(1, function(pokemon){
+    console.log('Pokémon opgehaald:');
+    console.log(pokemon);
+  });
+
+  GetPokemonById(100, function(pokemon){
+    console.log('Pokémon opgehaald:');
+    console.log(pokemon);
+  });
+};
 
 /* attach if scrollstop for first time */
 $(document).on("scrollstop", checkScroll);
