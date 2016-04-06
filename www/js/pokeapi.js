@@ -179,7 +179,7 @@ function checkScroll() {
 
 						$('#pokemon-list').listview('refresh');         
 		               	$.mobile.loading("hide");
-		               	// $(document).on("scrollstop", checkScroll);             
+		               	$(document).on("scrollstop", checkScroll);             
 
 		               },
 		               error: function (request,error) {
