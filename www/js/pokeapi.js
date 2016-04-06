@@ -2,8 +2,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
 
-
-
 		$(document).on('vclick', '#reversebutton', function(){
 			$('#pokemon-data').empty();
 		});

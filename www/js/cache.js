@@ -3,8 +3,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
 var apiBaseUrl = 'http://pokeapi.co/api/v2/';
 var pStore = window.localStorage;
 var Pokemon = [];
+var MyPokemon = [];
 
-// Get my Pokémon from localStorage
+// All Pokémon
 if(pStore.getItem('pokemon')){
   Pokemon = JSON.parse(pStore.getItem('pokemon'));
 
@@ -12,13 +13,23 @@ if(pStore.getItem('pokemon')){
   console.log(Pokemon);
 }
 
+// My Pokémon
+if(window.localStorage.getItem('my_pokemon')){
+  MyPokemon = JSON.parse(window.localStorage.getItem('my_pokemon'));
+
+  console.log('Current Pokémon in localStorage');
+  console.log(MyPokemon);
+}
+
 var GetPokemonById = function(pokemonId, callback){
 
+  // Search in cache
   found = Pokemon.filter(function( obj ) {
     console.log('Searching Pokémon in cache');
     return obj.id == pokemonId || obj.name == pokemonId; 
   });
 
+  // Nothing found in cache
   if(found.length == 0){
     console.log('Call Pokémon API');
 
@@ -35,7 +46,7 @@ var GetPokemonById = function(pokemonId, callback){
         }
 
         Pokemon.push(parsedresult);
-        SavePokemon();
+        window.localStorage.setItem('pokemon', JSON.stringify(Pokemon));
         callback(parsedresult);
 
       },
@@ -49,22 +60,8 @@ var GetPokemonById = function(pokemonId, callback){
 
 };
 
-function SavePokemon(){
-  // Re-serialize the array back into a string and store it in localStorage
-  pStore.setItem('pokemon', JSON.stringify(Pokemon));
-}
-
 function onDeviceReady() {
 
-  GetPokemonById(1, function(pokemon){
-    console.log('Pokémon opgehaald:');
-    console.log(pokemon);
-  });
-
-  GetPokemonById(100, function(pokemon){
-    console.log('Pokémon opgehaald:');
-    console.log(pokemon);
-  });
 };
 
 

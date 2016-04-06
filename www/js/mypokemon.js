@@ -2,8 +2,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
 
-    var myPokemon = [];
-
     $(document).on('pageshow', '#mypokemon-page', function(){
         console.log('ShowMyPokemon');
         CreateMyPokémonList();
@@ -12,16 +10,16 @@ function onDeviceReady() {
     function CreateMyPokémonList(){
 
         console.log('CreateMyPokémonList');
+        console.log(MyPokemon);
 
         $('#mypokemon-page ul').empty();
 
-        for(i = 0; i < 10; i++){
+        for(i = 0; i < MyPokemon.length; i++){
 
-            GetPokemonById(i, function(pokemon){
+            GetPokemonById(MyPokemon[i].id, function(pokemon){
                 $('#mypokemon-page ul').append('<li>' + pokemon.name + '</li>');
             });
                 
-        }
-        
+        }  
     }
 }

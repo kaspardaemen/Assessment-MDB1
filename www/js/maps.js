@@ -12,13 +12,68 @@ var denBoschCoords = [
     ];
 
 var spawnPoints = [];
+var attackingPokemon;
 
 function onDeviceReady() {
 
+    var attackingPokemon
     $(document).on('pageshow', '#map-page', function(){
         console.log('ShowMap');
         InitializeMap();
     });
+
+    $(document).on('pageshow', '#catch-page', function(){
+        console.log('Catch pokemon');
+        $('#catch-page audio').attr({'src' : '../res/107-battle-vs-wild-pokemon-.mp3', 'autoplay' : 'autoplay'});
+        $('#catch-page #catch').empty(); // Clear page
+        $('#catch-page button').hide();
+       
+        var randomPokemon = function(){
+            GetPokemonById(Math.floor((Math.random() * 100) + 1), function(pokemon){
+                console.log('random pokemon');
+                console.log(pokemon);
+                if(pokemon.details){
+                    randomPokemon();
+                }
+                else{
+                    attackingPokemon = pokemon;
+                    $('#catch-page #catch').append('<h2>' + pokemon.name + '</h2>');
+                    
+
+                    $('#catch-page #catch').append('<table data-role="table" data-mode="columntoggle" class="ui-responsive" id="myTable"><tbody>\
+    <tr><th>Naam</th><td>'+ pokemon.name+'</td></tr>\
+    <tr><th>Lengte</th><td>'+ pokemon.height+'</td></tr>\
+    <tr><th>Gewicht</th><td>'+ pokemon.weight+'</td></tr>\
+    </tbody></table>');
+                    $('#catch-page #catch').append('<img src="' + pokemon.sprites.front_default + '" />');
+  
+                    $('#catch-page button').show();
+
+
+                }
+            });
+            
+        };
+
+        randomPokemon();
+        
+    });
+
+    $(document).on('vclick', '#catch-page button', function(){
+        console.log('catch!!!');
+        MyPokemon.push(attackingPokemon);
+        window.localStorage.setItem('my_pokemon', JSON.stringify(MyPokemon));
+        $.mobile.pageContainer.pagecontainer('change', '#mypokemon-page');
+    });
+
+    $(document).on('pagehide', '#catch-page', function(){
+        console.log('change');
+        $('#catch-page audio').attr({'src' : '', 'autoplay' : ''});
+        $('#catch-page #catch').empty(); // Clear page
+        $('#catch-page button').hide();
+    });
+
+
 
     function InitializeMap(){
 
