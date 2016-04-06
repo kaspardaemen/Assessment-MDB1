@@ -12,7 +12,12 @@ function onDeviceReady() {
 	    	var url = $(this).attr('data-url'); 
 	       
 	        $.mobile.changePage( "#headline-pokemon", { transition: "slide", changeHash: false });
-	        $.mobile.loading('show');
+	        $.mobile.loading( 'show', {
+				text: 'Momentje...',
+				textVisible: true,
+				theme: 'b',
+				html: ""
+			})
 
 	        $.ajax({
 				url: url ,
@@ -134,7 +139,12 @@ function checkScroll() {
 /* add more function */
 	function addMore(page) {
 		$(document).off("scrollstop");
-		$.mobile.loading("show");
+		 $.mobile.loading( 'show', {
+				text: 'Niewe data laden...',
+				textVisible: true,
+				theme: 'b',
+				html: ""
+			})
 		var storage = window.localStorage; 
 		var retrievedObject = storage.getItem('pokemons');
 		setTimeout(function() {
@@ -167,7 +177,7 @@ function checkScroll() {
 		
 							});
 
-					//	$('#pokemon-list').listview('refresh');         
+						$('#pokemon-list').listview('refresh');         
 		               	$.mobile.loading("hide");
 		               	$(document).on("scrollstop", checkScroll);             
 
