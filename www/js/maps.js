@@ -27,7 +27,7 @@ function onDeviceReady() {
         // Avans Hogeschool Den Bosch
         var defaultLatLng = new google.maps.LatLng(51.687968, 5.286327);
 
-    	/*if (navigator.geolocation ) {
+    	if (navigator.geolocation ) {
     		function success(pos) {
                 console.log('Using navigator.geolocation' + pos.coords.latitude);
     			// Location found, show map with these coordinates
@@ -41,16 +41,15 @@ function onDeviceReady() {
             navigator.geolocation.getCurrentPosition(success, fail, {maximumAge: 500000, enableHighAccuracy:true, timeout: 6000});
         } else {
             drawMap(defaultLatLng);  // No geolocation support, show default map
-        }*/
+        }
 
-        drawMap(defaultLatLng);
+        //drawMap(defaultLatLng);
 
     	function drawMap(latlng) {
     		
-            console.log(latlng);
     		var myOptions = {
     			zoom: 16,
-    			center: latlng,
+    			center: new google.maps.LatLng(51.687968, 5.286327),
     			mapTypeId: google.maps.MapTypeId.ROADMAP
     		};
     	       
@@ -68,6 +67,8 @@ function onDeviceReady() {
 
             denBoschPolygon.setMap(map);
             GenerateSpawnPoints(map, denBoschPolygon);
+
+            new google.maps.Marker({position:latlng, map:map, icon : '../img/current_location_marker.png'})
 
     	}
 

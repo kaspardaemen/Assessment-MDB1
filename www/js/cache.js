@@ -26,10 +26,14 @@ var GetPokemonById = function(pokemonId, callback){
       url : apiBaseUrl + 'pokemon/' + pokemonId,
       type : 'GET',
       success : function(result){
+
         var parsedresult = JSON.parse(result)
 
-        console.log('parsed result');
-        console.log(parsedresult);
+        if(parsedresult.detail == 'Not found.')
+        {
+          return;
+        }
+
         Pokemon.push(parsedresult);
         SavePokemon();
         callback(parsedresult);
