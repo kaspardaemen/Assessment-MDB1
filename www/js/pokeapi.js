@@ -8,8 +8,8 @@ function onDeviceReady() {
 			$('#pokemon-data').empty();
 		});
 
-	 //event: op een pokemon geklinkt. ID van het aangeklikte id vastleggen
-	    $(document).on('tap', '#pokemon-list li a', function(){  
+	 //event: op een pokemon geklinkt. detail pagina opvragen
+	    $(document).on('swiperight', '#pokemon-list li a', function(){   
 
 	    	var name = $(this).attr('data-name');
 	       	console.log("LOG VAN KASPAR:",name); 
@@ -156,12 +156,12 @@ function checkScroll() {
 
 	if (activePage[0].id == "pokemons" && scrolled >= scrollEnd) {
 		
-		addMore(activePage);
+		addMore();
 	}
 }
 
 /* add more function */
-	function addMore(page) {
+	function addMore() {
 		$(document).off("scrollstop");
 		 $.mobile.loading( 'show', {
 				text: 'Niewe data laden...',
