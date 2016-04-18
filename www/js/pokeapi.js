@@ -6,6 +6,13 @@ function onDeviceReady() {
 			$('#pokemon-data').empty();
 		});
 
+		$("#wikiButton").on('tap', function (e) {
+			console.log("wiki getapped")
+		    //Prevents Default Behavior 
+		    e.preventDefault();
+		    // Calls Your Function with the URL from the custom data attribute 
+		    window.open($(e.currentTarget).attr('href'), '_system', '');
+		});
 	 //event: op een pokemon geklinkt. detail pagina opvragen
 	    $(document).on('swipeleft', '#pokemon-list li a', function(){  
 
@@ -38,6 +45,9 @@ function onDeviceReady() {
 	                	$('#types').append(row.type.name+', '); 
 	                });
 	        		$('#pokemon-data').append('</li>');
+
+	        		//$('#pokemon-data').append('<li><a href="#" id="wikiButton" data-url="http://pokemon.wikia.com/wiki/'+result.name+'"   class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-info" data-role="button">Wiki</a></li>')
+	        		$('#wikiButton').attr('href','http://pokemon.wikia.com/wiki/'+result.name);
 	                		
 	                $('#pokemon-data').listview('refresh'); 
 	                $.mobile.loading('hide');
@@ -104,6 +114,8 @@ function onDeviceReady() {
 
 
 	    });
+
+	
 
 	$(document).on('pageinit', '#pokemons', function(){ 
 
