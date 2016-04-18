@@ -38,7 +38,7 @@ var GetPokemonById = function(pokemonId, callback){
       type : 'GET',
       success : function(result){
 
-        var parsedresult = JSON.parse(result)
+        var parsedresult = JSON.parse(result);
 
         if(parsedresult.detail == 'Not found.')
         {

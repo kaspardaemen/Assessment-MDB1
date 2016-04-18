@@ -24,7 +24,7 @@ function onDeviceReady() {
 
     $(document).on('pagebeforeshow', '#catch-page', function(){
 
-        $('#catch-page audio').attr({'src' : '../res/107-battle-vs-wild-pokemon-.mp3', 'autoplay' : 'autoplay'});
+        //$('#catch-page audio').attr({'src' : '../res/107-battle-vs-wild-pokemon-.mp3', 'autoplay' : 'autoplay'});
         $('#catch-page #catch').empty(); // Clear page
         $('#catch-page button').hide();
     });

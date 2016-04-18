@@ -66,7 +66,7 @@ function onDeviceReady() {
 	                		
 	                $('#pokemon-data').listview('refresh'); 
 	                $.mobile.loading('hide');
-            });*/
+            });
 
 	       /* $.ajax({
 				url: url ,
