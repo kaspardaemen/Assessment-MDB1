@@ -38,16 +38,17 @@ var GetPokemonById = function(pokemonId, callback){
       type : 'GET',
       success : function(result){
 
-        var parsedresult = JSON.parse(result);
 
-        if(parsedresult.detail == 'Not found.')
+        if(result.detail == 'Not found.')
         {
           return;
         }
 
-        Pokemon.push(parsedresult);
+        Pokemon.push(result);
         window.localStorage.setItem('pokemon', JSON.stringify(Pokemon));
-        callback(parsedresult);
+
+        console.log(result);
+        callback(result);
 
       },
       error : function(result){}
