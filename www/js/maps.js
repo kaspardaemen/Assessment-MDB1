@@ -16,21 +16,23 @@ var attackingPokemon;
 
 function onDeviceReady() {
 
-    var attackingPokemon
     $(document).on('pageshow', '#map-page', function(){
+
         console.log('ShowMap');
         InitializeMap();
+
     });
 
-    $(document).on('pagebeforeshow', '#catch-page', function(){
+    /* Wilderniss pagina events*/
+    $(document).on('pagebeforeshow', '#wilderness-page', function(){
 
-        $('#catch-page audio').attr({'src' : '../res/107-battle-vs-wild-pokemon-.mp3', 'autoplay' : 'autoplay'});
-        $('#catch-page #catch').empty(); // Clear page
-        $('#catch-page button').hide();
+        //$('#wilderness-page audio').attr({'src' : '../res/107-battle-vs-wild-pokemon-.mp3', 'autoplay' : 'autoplay'});
+        $('#wilderness-page div[data-role="content"]').empty(); // Clear page
+        $('#wilderness-page button').hide();
     });
 
-    $(document).on('pageshow', '#catch-page', function(){
-        console.log('Catch pokemon');
+    $(document).on('pageshow', '#wilderness-page', function(){
+        console.log('Wilderness page');
         var randomPokemon = function(){
 
             GetPokemonById(Math.floor((Math.random() * 100) + 1), function(pokemon){
@@ -39,16 +41,16 @@ function onDeviceReady() {
                 }
                 else{
                     attackingPokemon = pokemon;
-                    $('#catch-page #catch').append('<h2>' + pokemon.name + '</h2>');
+                    $('#wilderness-page div[data-role="content"]').append('<h2>' + pokemon.name + '</h2>');
                     
 
-                    $('#catch-page #catch').append('<table data-role="table" data-mode="columntoggle" class="ui-responsive" id="myTable"><tbody>\
+                    $('#wilderness-page div[data-role="content"]').append('<table data-role="table" data-mode="columntoggle" class="ui-responsive" id="myTable"><tbody>\
     <tr><th>Naam</th><td>'+ pokemon.name+'</td></tr>\
     <tr><th>Lengte</th><td>'+ pokemon.height+'</td></tr>\
     <tr><th>Gewicht</th><td>'+ pokemon.weight+'</td></tr>\
     </tbody></table>');
-                    $('#catch-page #catch').append('<img src="' + pokemon.sprites.front_default + '" />');
-                    $('#catch-page button').show();
+                    $('#wilderness-page div[data-role="content"]' ).append('<img src="' + pokemon.sprites.front_default + '" />');
+                    $('#wilderness-page button').show();
 
 
                 }
@@ -60,18 +62,18 @@ function onDeviceReady() {
         
     });
 
-    $(document).on('vclick', '#catch-page button', function(){
-        console.log('catch!!!');
+    $(document).on('vclick', '#wilderness-page button', function(){
+
         MyPokemon.push(attackingPokemon);
         window.localStorage.setItem('my_pokemon', JSON.stringify(MyPokemon));
-        $.mobile.pageContainer.pagecontainer('change', '#mypokemon-page');
+        $.mobile.pageContainer.pagecontainer('change', 'index.html#mypokemon-page');
     });
 
-    $(document).on('pagehide', '#catch-page', function(){
-        console.log('change');
-        $('#catch-page audio').attr({'src' : '', 'autoplay' : ''});
-        $('#catch-page #catch').empty(); // Clear page
-        $('#catch-page button').hide();
+    $(document).on('pagehide', '#wilderness-page', function(){
+
+        $('#wilderness-page audio').attr({'src' : '', 'autoplay' : ''});
+        $('#wilderness-page div[data-role="content"]').empty(); // Clear page
+        $('#wilderness-page button').hide();
     });
 
 
