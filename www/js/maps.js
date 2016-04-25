@@ -70,8 +70,8 @@ function onDeviceReady() {
 
  
     $(document).on('vclick', '#wilderness-page button', function(){
-
-
+        
+        navigator.vibrate(4000);
         MyPokemon.push(attackingPokemon);
         window.localStorage.setItem('my_pokemon', JSON.stringify(MyPokemon));
         $.mobile.pageContainer.pagecontainer('change', '#mypokemon-page');
