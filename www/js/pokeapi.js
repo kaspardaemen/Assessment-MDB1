@@ -1,123 +1,64 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
+var pokemonDetails; // Opgeslagen details van een Pokémon
+
 function onDeviceReady() {
-	
-		$(document).on('vclick', '#reversebutton', function(){
-			$('#pokemon-data').empty();
+
+	$(document).on('vclick', '#reversebutton', function(){
+		$('#pokemon-data').empty();
+	});
+
+	$(document).on('vclick' , '#wikiButton', function (e) {
+		e.preventDefault();
+
+		// Calls Your Function with the URL from the custom data attribute 
+		window.open($(e.currentTarget).attr('href'), '_system', '');
+
+	});
+
+	// Pokémin detailpagina DOM geladen
+	$(document).on('create', '#pokemon-details', function(event){
+
+		$('#pokemon-details ul').append('<li><img src="'+pokemonDetails.sprites.front_default+'" /></li>');
+		$('#pokemon-details ul').append('<li>Naam: ' + pokemonDetails.name + '</li>');
+		$('#pokemon-details ul').append('<li>Lengte: ' + pokemonDetails.height + '</li>');
+		$('#pokemon-details ul').append('<li>Gewicht: ' + pokemonDetails.weight + '</li>');
+
+		//types
+		$('#pokemon-details ul').append('<li id="types">Type: ');
+
+		$.each(pokemonDetails.types, function(i, row){
+			$('#types').append(row.type.name+', ');
 		});
 
-		$("#wikiButton").on('tap', function (e) {
-			console.log("wiki getapped")
-		    //Prevents Default Behavior 
-		    e.preventDefault();
-		    // Calls Your Function with the URL from the custom data attribute 
-		    window.open($(e.currentTarget).attr('href'), '_system', '');
+		$('#pokemon-details ul').append('</li>');
+		$('#pokemon-details ul').listview('refresh');
+		$('#pokemon-details #wikiButton').attr('href','http://pokemon.wikia.com/wiki/' + pokemonDetails.name);
+		$.mobile.loading('hide');
+	});
+
+	//event: op een pokemon geklinkt. detail pagina opvragen
+	$(document).on('swipeleft', '#pokemon-list li a', function(){  
+
+		$.ajax({
+			url : $(this).attr('data-url'),
+			beforeSend : function(result){
+				$.mobile.loading('show', {
+					text: 'Pokémon laden',
+					textVisible: true,
+					html: ""
+				});
+			},
+			success : function(result){
+				pokemonDetails = result;
+				$.mobile.pageContainer.pagecontainer('change', "pokemon_details.html");
+			},
 		});
-	 //event: op een pokemon geklinkt. detail pagina opvragen
-	    $(document).on('swipeleft', '#pokemon-list li a', function(){  
-
-	    	var url = $(this).attr('data-url');
-	       	console.log("LOG VAN KASPAR:",name); 
-	        $.mobile.changePage( "#headline-pokemon", { transition: "slide", changeHash: false });
-	        $.mobile.loading( 'show', {
-				text: 'Momentje...',
-				textVisible: true,
-				theme: 'b',
-				html: ""
-			});
-
-			 $.ajax({
-			      url : url,
-			      type : 'GET',
-			      success : function(result){
-
-			         //naam
-	                $('#pokemon-data').append('<li><img src="'+result.sprites.front_default+'" /></li>');
-	                $('#pokemon-data').append('<li>Naam: '+result.name+'</li>');
-	                $('#pokemon-data').append('<li>Lengte: '+result.height+'</li>');
-	               	$('#pokemon-data').append('<li>Gewicht: '+result.weight+'</li>');  
-
-	                //types
-	                $('#pokemon-data').append('<li id="types">Type: ');  
-	                
-	                $.each(result.types, function(i, row){
-
-	                	$('#types').append(row.type.name+', '); 
-	                });
-	        		$('#pokemon-data').append('</li>');
-
-	        		//$('#pokemon-data').append('<li><a href="#" id="wikiButton" data-url="http://pokemon.wikia.com/wiki/'+result.name+'"   class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-info" data-role="button">Wiki</a></li>')
-	        		$('#wikiButton').attr('href','http://pokemon.wikia.com/wiki/'+result.name);
-	                		
-	                $('#pokemon-data').listview('refresh'); 
-	                $.mobile.loading('hide');
-
-			      },
-			      error : function(result){}
-			    });  
-/*
-			 GetPokemonById( name ,function(result){
-                $('#pokemon-data').empty();
-					
-	                //naam
-	                $('#pokemon-data').append('<li><img src="'+result.sprites.front_default+'" /></li>');
-	                $('#pokemon-data').append('<li>Naam: '+result.name+'</li>');
-	                $('#pokemon-data').append('<li>Lengte: '+result.height+'</li>');
-	               	$('#pokemon-data').append('<li>Gewicht: '+result.weight+'</li>'); 
-
-	                //types
-	                $('#pokemon-data').append('<li id="types">Type: ');  
-	                
-	                $.each(result.types, function(i, row){
-
-	                	$('#types').append(row.type.name+', '); 
-	                });
-	        		$('#pokemon-data').append('</li>');
-	                		
-	                $('#pokemon-data').listview('refresh'); 
-	                $.mobile.loading('hide');
-            });
-
-	       /* $.ajax({
-				url: url ,
-				dataType: "json",
-				async: true,
-				success: function (result) {
-
-					$('#pokemon-data').empty();
-					
-	                //naam
-	                $('#pokemon-data').append('<li><img src="'+result.sprites.front_default+'" /></li>');
-	                $('#pokemon-data').append('<li>Naam: '+result.name+'</li>');
-	                $('#pokemon-data').append('<li>Lengte: '+result.height+'</li>');
-	               	$('#pokemon-data').append('<li>Gewicht: '+result.weight+'</li>'); 
-
-	                //types
-	                $('#pokemon-data').append('<li id="types">Type: ');  
-	                
-	                $.each(result.types, function(i, row){
-
-	                	$('#types').append(row.type.name+', '); 
-	                });
-	        		$('#pokemon-data').append('</li>');
-	                		
-	                $('#pokemon-data').listview('refresh'); 
-	                $.mobile.loading('hide');
-	          
-	                  
-
-	               },
-	               error: function (request,error) {
-	               	console.log('Network error has occurred please try again!');  
-	               }
-	           });*/
-
-
-	    });
+	});
 
 	
 
-	$(document).on('pageinit', '#pokemons', function(){ 
+	$(document).on('pageinit', '#pokemon-list', function(){ 
 
 		var storage = window.localStorage;   
 		if(storage.getItem('pokemons') === null ){
@@ -143,11 +84,11 @@ function onDeviceReady() {
 	               	storage.setItem('pokemons', JSON.stringify(result));
 	               	// generate list in dom
 	               	$.each(result.results, function(i, row) {
-						$('#pokemon-list').append('<li><a data-name='+row.name+' data-url='+row.url+' href="" ><h3>' + row.name + '</h3></a></li>'); 
+						$('#pokemon-list ul').append('<li><a data-name='+row.name+' data-url='+row.url+' href="" ><h3>' + row.name + '</h3></a></li>'); 
 		
 					});
 
-					$('#pokemon-list').listview('refresh');           
+					$('#pokemon-list ul').listview('refresh');           
 
 	               },
 	               error: function (request,error) {
@@ -172,11 +113,11 @@ function generatePokeList(result) {
 	$.each(result.results, function(i, row) {
 		console.log(row);
 		
-		$('#pokemon-list').append('<li><a data-name='+row.name+' data-url='+row.url+' href="" ><h3>' + row.name + '</h3></a></li>'); 
+		$('#pokemon-list ul').append('<li><a data-name='+row.name+' data-url='+row.url+' href="" ><h3>' + row.name + '</h3></a></li>'); 
 		
 	});
 
-	$('#pokemon-list').listview('refresh');     
+	$('#pokemon-list ul').listview('refresh');     
 }
 
 
@@ -191,7 +132,7 @@ function checkScroll() {
 	footer = $(".ui-footer", activePage).outerHeight() - 1,
 	scrollEnd = contentHeight - screenHeight + header + footer;
 
-	if (activePage[0].id == "pokemons" && scrolled >= scrollEnd) {
+	if (activePage[0].id == "pokemon-list" && scrolled >= scrollEnd) {
 		
 		addMore();
 	}
@@ -201,9 +142,8 @@ function checkScroll() {
 	function addMore() {
 		$(document).off("scrollstop");
 		 $.mobile.loading( 'show', {
-				text: 'Niewe data laden...',
+				text: 'Meer Pokémon downloaden',
 				textVisible: true,
-				theme: 'b',
 				html: ""
 			})
 		var storage = window.localStorage; 
@@ -234,11 +174,11 @@ function checkScroll() {
 		            	console.log("dit hebben we:" + JSON.stringify(storage.getItem('pokemons'))); 
 		               	// generate list in dom
 		               		$.each(result.results, function(i, row) {
-								$('#pokemon-list').append('<li><a data-name='+row.name+' data-url='+row.url+' href="" ><h3>' + row.name + '</h3></a></li>');  
+								$('#pokemon-list ul').append('<li><a data-name='+row.name+' data-url='+row.url+' href="" ><h3>' + row.name + '</h3></a></li>');  
 		
 							});
 
-						$('#pokemon-list').listview('refresh');         
+						$('#pokemon-list ul').listview('refresh');         
 		               	$.mobile.loading("hide");
 		               	$(document).on("scrollstop", checkScroll);             
 

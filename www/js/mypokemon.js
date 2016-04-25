@@ -3,14 +3,13 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 
     // My Pokémon List Page pageshow Handler
-    $(document).on('pageshow', '#mypokemon-page', function(){
+    $(document).on('create', '#mypokemon-page', function(){
         CreateMyPokémonList();
     });
 
     // Fill list with caught Pokémon
     function CreateMyPokémonList(){
 
-        console.log('CreateMyPokémonList');
 
         $('#mypokemon-page ul').empty();
 

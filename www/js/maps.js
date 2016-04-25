@@ -16,9 +16,8 @@ var attackingPokemon;
 
 function onDeviceReady() {
 
-    $(document).on('pageshow', '#map-page', function(){
+    $(document).on('create', '#map-page', function(){
 
-        console.log('ShowMap');
         InitializeMap();
 
     });
@@ -51,7 +50,6 @@ function onDeviceReady() {
     </tbody></table>');
                     $('#wilderness-page div[data-role="content"]' ).append('<img src="' + pokemon.sprites.front_default + '" />');
                     $('#wilderness-page button').show();
-
 
                 }
             });
