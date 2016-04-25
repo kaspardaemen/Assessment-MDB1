@@ -66,7 +66,7 @@ function onDeviceReady() {
 
         MyPokemon.push(attackingPokemon);
         window.localStorage.setItem('my_pokemon', JSON.stringify(MyPokemon));
-        $.mobile.pageContainer.pagecontainer('change', 'index.html#mypokemon-page');
+        $.mobile.pageContainer.pagecontainer('change', '#mypokemon-page');
     });
 
     $(document).on('pagehide', '#wilderness-page', function(){
