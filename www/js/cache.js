@@ -37,12 +37,15 @@ var GetPokemonById = function(pokemonId, callback){
       url : apiBaseUrl + 'pokemon/' + pokemonId,
       type : 'GET',
       dataType : 'json',
+      beforeSend : function(){
+
+        $.mobile.loading( 'show', {
+                text: 'Laden',
+                textVisible: true,
+                html: ""
+            })
+      },
       success : function(result){
-
-
-
-        var parsedresult = result; 
-
 
         if(result.detail == 'Not found.')
         {
@@ -54,6 +57,7 @@ var GetPokemonById = function(pokemonId, callback){
 
         console.log(result);
         callback(result);
+        $.mobile.loading('hide');
 
       },
       error : function(result){}

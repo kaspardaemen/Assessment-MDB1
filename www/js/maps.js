@@ -12,9 +12,10 @@ var denBoschCoords = [
     ];
 
 var spawnPoints = [];
-var attackingPokemon;
 
 function onDeviceReady() {
+
+    var attackingPokemon;
 
     $(document).on('create', '#map-page', function(){
 
@@ -32,6 +33,7 @@ function onDeviceReady() {
 
     $(document).on('pageshow', '#wilderness-page', function(){
         console.log('Wilderness page');
+
         var randomPokemon = function(){
 
             GetPokemonById(Math.floor((Math.random() * 100) + 1), function(pokemon){
@@ -71,7 +73,7 @@ function onDeviceReady() {
         navigator.vibrate(4000);
         MyPokemon.push(attackingPokemon);
         window.localStorage.setItem('my_pokemon', JSON.stringify(MyPokemon));
-        $.mobile.pageContainer.pagecontainer('change', '#mypokemon-page');
+        $.mobile.pageContainer.pagecontainer('change', 'my_pokemon.html');
     });
 
     $(document).on('pagehide', '#wilderness-page', function(){
