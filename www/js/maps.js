@@ -48,6 +48,10 @@ function onDeviceReady() {
     <tr><th>Lengte</th><td>'+ pokemon.height+'</td></tr>\
     <tr><th>Gewicht</th><td>'+ pokemon.weight+'</td></tr>\
     </tbody></table>');
+
+                    $('#catch-page #catch').append('<img src="' + pokemon.sprites.front_default + '" />');  
+                    $('#catch-page button').show();
+
                     $('#wilderness-page div[data-role="content"]' ).append('<img src="' + pokemon.sprites.front_default + '" />');
                     $('#wilderness-page button').show();
 
@@ -60,8 +64,11 @@ function onDeviceReady() {
         
     });
 
-    $(document).on('vclick', '#wilderness-page button', function(){
 
+ 
+    $(document).on('vclick', '#wilderness-page button', function(){
+        
+        navigator.vibrate(4000);
         MyPokemon.push(attackingPokemon);
         window.localStorage.setItem('my_pokemon', JSON.stringify(MyPokemon));
         $.mobile.pageContainer.pagecontainer('change', '#mypokemon-page');
