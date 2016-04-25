@@ -47,7 +47,7 @@ function onDeviceReady() {
     <tr><th>Lengte</th><td>'+ pokemon.height+'</td></tr>\
     <tr><th>Gewicht</th><td>'+ pokemon.weight+'</td></tr>\
     </tbody></table>');
-                    $('#catch-page #catch').append('<img src="' + pokemon.sprites.front_default + '" />');
+                    $('#catch-page #catch').append('<img src="' + pokemon.sprites.front_default + '" />');  
                     $('#catch-page button').show();
 
 
@@ -62,6 +62,7 @@ function onDeviceReady() {
 
     $(document).on('vclick', '#catch-page button', function(){
         console.log('catch!!!');
+        navigator.vibrate(4000);
         MyPokemon.push(attackingPokemon);
         window.localStorage.setItem('my_pokemon', JSON.stringify(MyPokemon));
         $.mobile.pageContainer.pagecontainer('change', '#mypokemon-page');
