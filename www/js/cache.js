@@ -36,6 +36,7 @@ var GetPokemonById = function(pokemonId, callback){
     $.ajax({
       url : apiBaseUrl + 'pokemon/' + pokemonId,
       type : 'GET',
+      dataType : 'json',
       success : function(result){
 
 
