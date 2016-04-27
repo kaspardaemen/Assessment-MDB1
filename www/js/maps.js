@@ -23,12 +23,21 @@ function onDeviceReady() {
 
     });
 
+    $(document).on('vclick' , '#navigateButton', function (e) {
+        e.preventDefault();
+
+        // Calls Your Function with the URL from the custom data attribute 
+        window.open($(e.currentTarget).attr('href'), '_system', ''); 
+
+    });
+
     /* Wilderniss pagina events*/
     $(document).on('pagebeforeshow', '#wilderness-page', function(){
 
         //$('#wilderness-page audio').attr({'src' : '../res/107-battle-vs-wild-pokemon-.mp3', 'autoplay' : 'autoplay'});
         $('#wilderness-page div[data-role="content"]').empty(); // Clear page
         $('#wilderness-page button').hide();
+        $('#wilderness-page a').hide();
     });
 
     $(document).on('pageshow', '#wilderness-page', function(){
@@ -55,7 +64,9 @@ function onDeviceReady() {
                     $('#catch-page button').show();
 
                     $('#wilderness-page div[data-role="content"]' ).append('<img src="' + pokemon.sprites.front_default + '" />');
+                    $('#wilderness-page #navigateButton').attr('href','http://maps.google.com/maps?daddr=51.783287,5.853325&amp;ll=');
                     $('#wilderness-page button').show();
+                    $('#wilderness-page a').show();
 
                 }
             });
