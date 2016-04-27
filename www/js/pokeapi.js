@@ -58,7 +58,7 @@ function onDeviceReady() {
 
 	
 
-	$(document).on('pageinit', '#pokemon-list', function(){ 
+	$(document).on('pagecreate', '#pokemon-list', function(){ 
 
 		var storage = window.localStorage;   
 		if(storage.getItem('pokemons') === null ){

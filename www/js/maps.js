@@ -12,6 +12,8 @@ var denBoschCoords = [
     ];
 
 var spawnPoints = [];
+var currentPokemonLat;
+var currentPokemonLong;
 
 function onDeviceReady() {
 
@@ -150,6 +152,21 @@ function onDeviceReady() {
 
     };
     // End CreateMap
+
+    function GenerateSpawnPoint(map, polygon){
+        var bounds = new google.maps.LatLngBounds();
+
+         for (var i=0; i < polygon.getPath().getLength(); i++) {
+            bounds.extend(polygon.getPath().getAt(i));
+        }
+
+        var sw = bounds.getSouthWest();
+        var ne = bounds.getNorthEast();
+
+        currentPokemonLat = Math.random() * (ne.lat() - sw.lat()) + sw.lat();
+        currentPokemonLong = Math.random() * (ne.lng() - sw.lng()) + sw.lng();
+
+    }
 
     function GenerateSpawnPoints(map, polygon){
 
