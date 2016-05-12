@@ -25,7 +25,7 @@ function onDeviceReady() {
 
     });
 
-    $(document).on('vclick' , '#navigateButton', function (e) {
+    $(document).on('vclick' , '#wilderness-page a', function (e) { 
         e.preventDefault();
 
         // Calls Your Function with the URL from the custom data attribute 
@@ -67,6 +67,7 @@ function onDeviceReady() {
 
                     $('#wilderness-page div[data-role="content"]' ).append('<img src="' + pokemon.sprites.front_default + '" />');
                     $('#wilderness-page #navigateButton').attr('href','http://maps.google.com/maps?daddr=51.783287,5.853325&amp;ll=');
+                    $('#wilderness-page #youtubeButton').attr('href','https://www.youtube.com/results?search_query='+pokemon.name);
                     $('#wilderness-page button').show();
                     $('#wilderness-page a').show();
 
