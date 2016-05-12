@@ -44,6 +44,7 @@ function onDeviceReady() {
 
     $(document).on('pageshow', '#wilderness-page', function(){
         console.log('Wilderness page');
+        GenerateSpawnPoint();
 
         var randomPokemon = function(){
 
@@ -66,7 +67,7 @@ function onDeviceReady() {
                     $('#catch-page button').show();
 
                     $('#wilderness-page div[data-role="content"]' ).append('<img src="' + pokemon.sprites.front_default + '" />');
-                    $('#wilderness-page #navigateButton').attr('href','http://maps.google.com/maps?daddr=51.783287,5.853325&amp;ll=');
+                    $('#wilderness-page #navigateButton').attr('href','http://maps.google.com/maps?daddr=currentPokemonLat,currentPokemonLong;ll=');
                     $('#wilderness-page #youtubeButton').attr('href','https://www.youtube.com/results?search_query='+pokemon.name);
                     $('#wilderness-page button').show();
                     $('#wilderness-page a').show();
@@ -166,6 +167,12 @@ function onDeviceReady() {
 
         currentPokemonLat = Math.random() * (ne.lat() - sw.lat()) + sw.lat();
         currentPokemonLong = Math.random() * (ne.lng() - sw.lng()) + sw.lng();
+        var point = new google.maps.LatLng(ptLat,ptLng);
+
+
+            if (google.maps.geometry.poly.containsLocation(point, polygon)) {
+                spawnPoints.push(new google.maps.Marker({position:point, map:map}));
+            }
 
     }
 
