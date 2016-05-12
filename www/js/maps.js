@@ -44,8 +44,7 @@ function onDeviceReady() {
 
     $(document).on('pageshow', '#wilderness-page', function(){
         console.log('Wilderness page');
-        
-       
+      
 
         var randomPokemon = function(){
 
@@ -68,7 +67,7 @@ function onDeviceReady() {
                     $('#catch-page button').show();
 
                     $('#wilderness-page div[data-role="content"]' ).append('<img src="' + pokemon.sprites.front_default + '" />');
-                    $('#wilderness-page #navigateButton').attr('href','http://maps.google.com/maps?daddr='+getRandomInRange(-180, 180, 3)+','getRandomInRange(-180, 180, 3)';ll=');
+                    $('#wilderness-page #navigateButton').attr('href','http://maps.google.com/maps?daddr='+getRandomInRange(51.6978162, 5.303674799999953, 7)+','+getRandomInRange(5.303674799999953, 51.6978162, 15)+'&amp;ll=');
                     $('#wilderness-page #youtubeButton').attr('href','https://www.youtube.com/results?search_query='+pokemon.name);
                     $('#wilderness-page button').show();
                     $('#wilderness-page a').show();
@@ -156,10 +155,11 @@ function onDeviceReady() {
     };
     // End CreateMap
 
-   function getRandomInRange(from, to, fixed) {
+    function getRandomInRange(from, to, fixed) {
     return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
     // .toFixed() returns string, so ' * 1' is a trick to convert to number
-    }
+}
+
     function GenerateSpawnPoints(map, polygon){
 
         var bounds = new google.maps.LatLngBounds();
