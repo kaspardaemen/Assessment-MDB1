@@ -45,26 +45,7 @@ function onDeviceReady() {
     $(document).on('pageshow', '#wilderness-page', function(){
         console.log('Wilderness page');
         
-        var myOptions = {
-                zoom: 16,
-                center: new google.maps.LatLng(51.687968, 5.286327),
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-               
-            var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
-
-            // Construct the polygon.
-            var denBoschPolygon = new google.maps.Polygon({
-                paths: denBoschCoords,
-                strokeColor: '#FF0000',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: '#FF0000',
-                fillOpacity: 0.10
-            });
-
-            denBoschPolygon.setMap(map);
-            GenerateSpawnPoint(map, denBoschPolygon);
+       
 
         var randomPokemon = function(){
 
@@ -87,7 +68,7 @@ function onDeviceReady() {
                     $('#catch-page button').show();
 
                     $('#wilderness-page div[data-role="content"]' ).append('<img src="' + pokemon.sprites.front_default + '" />');
-                    $('#wilderness-page #navigateButton').attr('href','http://maps.google.com/maps?daddr=currentPokemonLat,currentPokemonLong;ll=');
+                    $('#wilderness-page #navigateButton').attr('href','http://maps.google.com/maps?daddr='+getRandomInRange(-180, 180, 3)+','getRandomInRange(-180, 180, 3)';ll=');
                     $('#wilderness-page #youtubeButton').attr('href','https://www.youtube.com/results?search_query='+pokemon.name);
                     $('#wilderness-page button').show();
                     $('#wilderness-page a').show();
@@ -175,27 +156,10 @@ function onDeviceReady() {
     };
     // End CreateMap
 
-    function GenerateSpawnPoint(map, polygon){
-        var bounds = new google.maps.LatLngBounds();
-
-         for (var i=0; i < polygon.getPath().getLength(); i++) {
-            bounds.extend(polygon.getPath().getAt(i));
-        }
-
-        var sw = bounds.getSouthWest();
-        var ne = bounds.getNorthEast();
-
-        currentPokemonLat = Math.random() * (ne.lat() - sw.lat()) + sw.lat();
-        currentPokemonLong = Math.random() * (ne.lng() - sw.lng()) + sw.lng();
-        var point = new google.maps.LatLng(ptLat,ptLng);
-
-
-            if (google.maps.geometry.poly.containsLocation(point, polygon)) {
-                spawnPoints.push(new google.maps.Marker({position:point, map:map}));
-            }
-
+   function getRandomInRange(from, to, fixed) {
+    return (Math.random() * (to - from) + from).toFixed(fixed) * 1;
+    // .toFixed() returns string, so ' * 1' is a trick to convert to number
     }
-
     function GenerateSpawnPoints(map, polygon){
 
         var bounds = new google.maps.LatLngBounds();
