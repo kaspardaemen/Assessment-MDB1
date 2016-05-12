@@ -81,7 +81,7 @@ function onDeviceReady() {
 
 
  
-    $(document).on('vclick', '#wilderness-page button', function(){
+    $(document).on('vclick', '#wilderness-page button #catch', function(){
         
         navigator.vibrate(4000);
         MyPokemon.push(attackingPokemon);
