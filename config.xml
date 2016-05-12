@@ -29,7 +29,8 @@
   <gap:plugin name="org.apache.cordova.geolocation"/>
   <gap:plugin name="org.apache.cordova.globalization"/>
   <gap:plugin name="org.apache.cordova.inappbrowser"/>
-  <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+
+<gap:plugin name="nl.x-services.plugins.socialsharing" version="2.3" />    
  
   <gap:plugin name="org.apache.cordova.vibration" />
 
