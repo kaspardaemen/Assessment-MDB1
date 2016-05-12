@@ -25,7 +25,7 @@ function onDeviceReady() {
 
     });
 
-    $(document).on('vclick' , '#wilderness-page a', function (e) { 
+    $(document).on('vclick' , '#wilderness-page div[data-role=footer] a', function (e) { 
         e.preventDefault();
 
         // Calls Your Function with the URL from the custom data attribute 
@@ -67,7 +67,7 @@ function onDeviceReady() {
                     $('#catch-page button').show();
 
                     $('#wilderness-page div[data-role="content"]' ).append('<img src="' + pokemon.sprites.front_default + '" />');
-                    $('#wilderness-page #navigateButton').attr('href','http://maps.google.com/maps?daddr='+getRandomInRange(51.6978162, 5.303674799999953, 7)+','+getRandomInRange(5.303674799999953, 51.6978162, 15)+'&amp;ll=');
+                    $('#wilderness-page #navigateButton').attr('href','http://maps.google.com/maps?daddr='+getRandomInRange(51.5978162, 51.7978162, 7)+','+getRandomInRange(5.103674799999953, 5.303674799999953, 15)+'&amp;ll=');
                     $('#wilderness-page #youtubeButton').attr('href','https://www.youtube.com/results?search_query='+pokemon.name);
                     $('#wilderness-page button').show();
                     $('#wilderness-page a').show();
@@ -83,7 +83,7 @@ function onDeviceReady() {
 
 
  
-    $(document).on('vclick', '#wilderness-page button #catch', function(){
+    $(document).on('vclick', '#wilderness-page button', function(){
         
         navigator.vibrate(4000);
         MyPokemon.push(attackingPokemon);
